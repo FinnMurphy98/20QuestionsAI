@@ -25,3 +25,5 @@
 4. Launch the application with the following command-line prompt: `flask run`
 
 5. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
+
+7. If you want to run the application with debug mode turned on, then add a new line to the `.flaskenv` file: `FLASK_DEBUG=1`
