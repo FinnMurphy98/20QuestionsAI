@@ -65,12 +65,14 @@
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2. If it is your first time running, then you need to create a file in the same directory as this `README.md` file called `.flaskenv`. 
+2. If it is your first time running, then you need to create a file in the same directory as this `README.md` file called `.flaskenv`. This file is for adding environment variables. This file will be ignored by git when committing.
 
-3. In the `.flaskenv` file, write `FLASK_APP=20questionsAI.py` and save it. This file will be ignored by git when committing.
+3. In the `.flaskenv` file, write `FLASK_APP=20questionsAI.py` and save it. 
 
-4. Launch the application with the following command-line prompt: `flask run`
+4. Add a secret key to the `.flaskenv` by writing on a new line: `SECRET_KEY=`*your_secret_key*
 
-5. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
+5. If you want to run the application with debug mode turned on, then add a new line to the `.flaskenv` file: `FLASK_DEBUG=1`
 
-7. If you want to run the application with debug mode turned on, then add a new line to the `.flaskenv` file: `FLASK_DEBUG=1`
+6. Launch the application with the following command-line prompt: `flask run`
+
+7. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
