@@ -1,5 +1,52 @@
 # 20QuestionsAI
 
+## Website Layout
+
+### Index/Home Page (http://127.0.0.1:5000/)
+- Welcome message
+- Short description about website
+- Option to create an account
+- Option to login
+
+### Login Page (http://127.0.0.1:5000/login)
+- login fields and submit button
+
+### Create account Page (http://127.0.0.1:5000/sign_up)
+- sign up fields and submit button
+
+### Logged-in/User Home Page (http://127.0.0.1:5000/username)
+- button to return to current game (if they left a new game before it finished)
+- button to play a new game as questioner (if no current game)
+- button to play new game as answerer (if no current game)
+- display some the users stats (such as win rate)
+- option to logout (returns to index page)
+- option to view users game history
+
+### New Game Page (http://127.0.0.1:5000/username/game/gameID)
+- can scroll through all sent messages in the game
+- labels for who is the questioner and who is the answerer
+- a chat bar for entering text
+- a counter that shows what question number the questioner is on
+- a buttons that the user can press to finish the game: "ChatGPT wins" or "You win" or "cancelled"
+- option to go back to users home page
+- option to go to history page
+- option to log out (returns to index page)
+
+### History page (http://127.0.0.1:5000/username/history)
+- all games they've played and the summary results displayed starting from most recent
+- can click on a past game to bring up the messages that were displayed
+- can search past games by keywords
+- option to go back to users home page
+- opion to log out (returns to index page)
+
+### Past Game Page (http://127.0.0.1:5000/username/past_game/gameID)
+- can scroll through messages that were sent
+- labels for who was the questioner and who was the answerer
+- game winner displayed (you or ChatGPT)
+- option to go back to history page
+- option to go to users home page
+- option to log out (returns to index page)
+
 ## Setup & Installations
 
 1. Download and install Python version 3.11.3
