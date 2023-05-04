@@ -57,12 +57,12 @@
 - sign up fields and submit button
 
 ### Logged-in/User Home Page (http://127.0.0.1:5000/username)
-- button to return to current game (if they left a new game before it finished)
+- button to return to current game page (if they left a new game before it finished)
 - button to play a new game as questioner (if no current game)
 - button to play new game as answerer (if no current game)
 - display some the users stats (such as win rate)
 - option to logout (returns to index page)
-- option to view users game history
+- button to navigate to history page
 
 ### New Game Page (http://127.0.0.1:5000/username/game/gameID)
 - can scroll through all sent messages in the game
