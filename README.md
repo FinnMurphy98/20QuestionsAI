@@ -18,13 +18,11 @@
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2. Create the database migrations folder with the following command-line prompt: `flask db init`
+2.  The migration scripts are already in source control. You can create the database if it doesn't exist on your local machine with the following command-line prompt: `flask db upgrade`
 
-3. Generate the migtation script and create the database if it doesn't exist with the following command-line prompt: `flask db migrate -m "update tables"`
+3. If you make any changes to the database models, update the migration script with the following command-line prompt: `flask db migrate -m "update tables"`
 
-4. Update the database with the following command-line prompt: `flask db upgrade`
-
-5. Repeat steps 3 and 4 after changing or adding new models.
+4. Repeat step 2 after updating the migration script.
 
 ## Run the app
 
