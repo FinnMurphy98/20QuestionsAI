@@ -6,25 +6,23 @@
 
 2. Assuming you have cloned the GitHub repository to your local machine and have made it your current directory. 
 
-3. Create a virtual environment with the following command-line prompt: `python3 -m venv venv`
+3. Create a virtual environment with the command-line: `python3 -m venv venv`
 
-4. If you are using linux/macOS, activate your virtual environment with the following command-line prompt: `source venv/bin/activate`
+4. If you are using linux/macOS, activate your virtual environment with the command-line: `source venv/bin/activate`
 
-5. If you are using windows, activate your virtual environment with the following command-line prompt: `venv\Scripts\activate`
+5. If you are using windows, activate your virtual environment with the command-line: `venv\Scripts\activate`
 
-6. Install the required packages from the requirements.txt file with the following command-line prompt: `python3 -m pip install -r requirements.txt`
+6. Install the required packages from the requirements.txt file with the command-line: `python3 -m pip install -r requirements.txt`
 
 ## Database Creation and Migration
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2. Create the database migrations folder with the following command-line prompt: `flask db init`
+2.  The migration scripts are already in source control. You can create the database if it doesn't exist on your local machine with the command-line: `flask db upgrade`
 
-3. Generate the migtation script and create the database if it doesn't exist with the following command-line prompt: `flask db migrate -m "update tables"`
+3. If you make any changes to the database models, update the migration script using the command-line: `flask db migrate -m "update tables"`
 
-4. Update the database with the following command-line prompt: `flask db upgrade`
-
-5. Repeat steps 3 and 4 after changing or adding new models.
+4. Repeat step 2 after updating the migration script.
 
 ## Run the app
 
@@ -38,7 +36,7 @@
 
 5. If you want to run the application with debug mode turned on, then add a new line to the `.flaskenv` file: `FLASK_DEBUG=1`
 
-6. Launch the application with the following command-line prompt: `flask run`
+6. Launch the application using the command-line: `flask run`
 
 7. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
 
