@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Choose your role for the new game.</h1>
+    <a href="{{ url_for('new_game', role='Answerer') }}">Answerer</a>
+    <a href="{{ url_for('new_game', role='Questioner') }}">Questioner</a>
+{% endblock %}

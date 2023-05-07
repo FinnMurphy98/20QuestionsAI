@@ -25,7 +25,7 @@ class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
-    questioner = db.Column(db.Boolean)
+    role = db.Column(db.String(64))
     winner = db.Column(db.Boolean)
     __tablename__ = 'Game'
 

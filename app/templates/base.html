@@ -15,9 +15,12 @@
         <div>
             <a href="{{ url_for('index') }}">20questionsAI</a>
             {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Log in</a>
+            <a href="{{ url_for('login') }}">Log In</a>
             {% else %}
-            <a href="{{ url_for('logout') }}">Log out</a>
+            <a href="{{ url_for('home', username=current_user.username) }}">Home</a>
+            <a href="{{ url_for('role') }}">New Game</a>
+            <a href="{{ url_for('history') }}">History</a>
+            <a href="{{ url_for('logout') }}">Log Out</a>
             {% endif %}
         </div>
         {% with messages = get_flashed_messages() %}

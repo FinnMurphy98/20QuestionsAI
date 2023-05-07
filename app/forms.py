@@ -25,3 +25,7 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('This email is already in use. Please use a different one.')
+        
+class FinishGameForm(FlaskForm):
+    winner = BooleanField('Tick if you won. Be honest...')
+    submit = SubmitField('Finish')

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Previous games</h1>
+    <input type="text" placeholder="Search for previous games">
+    <button>Search</button>
+    <ul>
+        {% for game in games %}
+        <li><a href="{{ url_for('past_game', gameID=game.id) }}">Click to view</a> <b>Role</b> = {{ game.role }}, <b>Winner</b> = {{ game.winner }}, <b>Date</b> = {{ game.timestamp}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
