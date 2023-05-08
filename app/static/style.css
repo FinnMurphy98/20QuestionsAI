@@ -1,0 +1,30 @@
+/* base.html */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 7px; 
+}
+
+.navbar a {
+    outline: solid 1px #d8d7d7;
+    color: #3a45a4;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px 13px;
+    margin: 0 7px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #3a45a40d;
+}
+
+.navbar a.active {
+    background-color: #3a45a40d;
+}
+
+hr {
+    border: solid 1px #b3b2b249;
+}
+
