@@ -28,3 +28,76 @@ hr {
     border: solid 1px #b3b2b249;
 }
 
+/* index */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    padding: 30px;
+    animation: blink 3s infinite;
+    text-align: center;
+    color: #3a45a4;
+}
+
+/* login.html */
+.login-card {
+    text-align: center; 
+    color: #3a45a4c9;
+    width: 350px;
+    height: 350px;
+    margin: 50px auto ;
+    border: 1px solid #cccccc71;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #4b4b4b49;
+}
+
+.login-card h1 {
+   
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    border: none;
+    border-bottom: 2px solid #bcbbbbd0;
+    padding: 5px;
+    outline: none;
+    background-color:transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #292828;
+}
+
+.submit-button input[type="submit"] {
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3a45a4;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.submit-button input[type="submit"]:hover {
+    background-color: #3a45a40d;
+}
+
+.new-user a {
+    color: #282828a8;
+
+}
+
+
+
+
