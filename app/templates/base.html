@@ -13,34 +13,40 @@
     <body>
         <!-- navigation bar -->
         <div class="navbar">
-            <a href="{{ url_for('index') }}">20questionsAI</a>
-            {% if current_user.is_anonymous %}
-            <a class="menu" href="{{ url_for('login') }}">Log In</a>
-            {% else %}
-            <a class="menu" href="{{ url_for('home', username=current_user.username) }}">
-                <span class="icon">
-                    <img src="{{ url_for('static', filename='home_icon.png') }}" alt="Home">
-                </span>
-                Home
-            </a>
-            <a class="menu" href="{{ url_for('role') }}">
-                <span class="icon">
-                    <img src="{{ url_for('static', filename='games_icon.png') }}" alt="New Game">
-                </span>
-                New Game</a>
-            <a class="menu" href="{{ url_for('history') }}">
-                <span class="icon">
-                    <img src="{{ url_for('static', filename='history_icon.png') }}" alt="History">
-                </span>
-                History</a>
-            <div class="dropdown">
-                <button onclick="dropdown()" class="dropbtn">
-                    {{ current_user.username }}</button>
-                <div id="dropdown-menu" class="dropdown-content">
-                    <a href="{{ url_for('logout') }}">Log Out</a>
-                </div>
+            <div class="left">
+                <a class="title" href="{{ url_for('index') }}">20questionsAI</a>
+                {% if current_user.is_anonymous %}
+                <a class="menu" href="{{ url_for('login') }}">Log In</a>
+                {% else %}
+                <a class="menu" href="{{ url_for('home', username=current_user.username) }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='home_icon.png') }}" alt="Home">
+                    </span>
+                    Home
+                </a>
+                <a class="menu" href="{{ url_for('role') }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='games_icon.png') }}" alt="New Game">
+                    </span>
+                    New Game</a>
+                <a class="menu" href="{{ url_for('history') }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='history_icon.png') }}" alt="History">
+                    </span>
+                    History</a>
+                {% endif %}
             </div>
-            {% endif %}
+            <div class="right">
+                {% if not current_user.is_anonymous %}
+                    <div class="dropdown">
+                        <button onclick="dropdown()" class="dropbtn">
+                            {{ current_user.username }}</button>
+                        <div id="dropdown-menu" class="dropdown-content">
+                            <a href="{{ url_for('logout') }}">Log Out</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="card">
     <h1>Role: {{ game.role }}</h1>
     {% if game.winner %}
     <h1>Outcome: Winner!</h1>
@@ -13,4 +14,5 @@
             <!-- display chat history here -->
         </div>
     </div>
+</div>
 {% endblock %}

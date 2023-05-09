@@ -1,8 +1,29 @@
 /* base.html */
 .navbar {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     padding: 7px; 
+}
+
+.title {
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-variant:small-caps;
+    color: #2a2b2bc8;
+    padding: 10px 13px;
+    border-radius: 10px;
+}
+
+.navbar .left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
 }
 
 .navbar .menu {
@@ -33,6 +54,7 @@
     cursor: pointer;
     background-color: transparent;
     border-radius: 10px;
+    margin-left: auto;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -50,15 +72,16 @@
     position: absolute;
     z-index: 1;
     background-color: #f1f1f1;
-    min-width: 100px;
+    width: 90px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdown-content a {
-    color: #3a45a4;
+    text-align: center;
+    color: #2a2b2bc8;
     font-weight: bold;
-    padding: 12px 16px;
+    padding: 8px 10px;
     font-size: 15px;
     text-decoration: none;
     display: block;
@@ -132,19 +155,20 @@ hr {
 .card {
     text-align: center; 
     color: #3a45a4c9;
-    width: 350px;
-    
+    width: max-content;   
     margin: 50px auto ;
     border: 1px solid #cccccc71;
     border-radius: 8px;
     box-shadow: 0 0 10px #4b4b4b49;
+    padding: 40px;
 }
 
 .card h1 {
    
     font-weight: bolder;
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 5px;
 }
 
 input[type="text"], input[type="password"] {
@@ -166,7 +190,6 @@ input[type="text"]:focus, input[type="password"]:focus {
     color: #3a45a4;
     padding: 8px 15px;
     border-radius: 20px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .submit-button input[type="submit"]:hover {
@@ -179,6 +202,75 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 
+/* role.html */
+.card .role {
+    text-decoration: none;
+    padding: 9px;
+    margin: 10px;
+    color: #3a45a4;
+    border: solid 2px #d8d7d7;
+    border-radius: 20px;
+}
+.card .role:hover {
+    background-color: #3a45a40d;
+}
 
+/* history.html */
+.search {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3a45a4;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.search:hover {
+    background-color: #3a45a40d;
+}
 
+.history-input {
+    width: 250px;
+}
 
+.history-record {
+    color: #555353d9;
+}
+
+.history-record a {
+    color: #3a45a4;
+    font-weight: bold;
+    text-decoration: none;
+    border: dotted 2px #a4a4a4;
+    padding: 6px 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* newgame.html */
+.send {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3a45a4;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.send:hover {
+    background-color: #3a45a40d;
+}
+
+#chat-input input {
+    width: 300px;
+}
+
+.finish input[type="submit"] {
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3a45a4;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.finish input[type="submit"]:hover {
+    background-color: #3a45a40d;
+}
