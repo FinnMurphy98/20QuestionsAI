@@ -77,7 +77,7 @@
 - can click on a past game to bring up the messages that were displayed
 - can search past games by keywords
 - option to go back to users home page
-- opion to log out (returns to index page)
+- option to log out (returns to index page)
 
 ### Past Game Page (http://127.0.0.1:5000/username/past_game/gameID)
 - can scroll through messages that were sent
