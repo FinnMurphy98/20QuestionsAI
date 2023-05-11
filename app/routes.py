@@ -70,7 +70,7 @@ def new_game(role):
 @app.route('/history', methods=['GET', 'POST'])
 @login_required
 def history():
-    games = Game.query.all()
+    games = current_user.games
     return render_template('history.html', games=games)
 
 @app.route('/history/<gameID>')
