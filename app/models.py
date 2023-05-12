@@ -5,6 +5,11 @@ from flask_login import UserMixin
 from app import login
 
 class User(UserMixin, db.Model):
+    """
+    User database model. 
+    Username and email must be unique.
+    games field is a list of all games played by the user.  
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(128), index=True, unique=True, nullable=False)
@@ -13,7 +18,7 @@ class User(UserMixin, db.Model):
     __tablename__ = 'User'
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User: {}>'.format(self.username)
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -22,15 +27,38 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 class Game(db.Model):
+    """
+    Game database model. 
+    timestamp is created when committed to database. 
+    role is either 'Questioner' or 'Answerer'. 
+    winner is True or False.
+    """
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
-    role = db.Column(db.String(64))
-    winner = db.Column(db.Boolean)
+    role = db.Column(db.String(64), nullable=False)
+    winner = db.Column(db.Boolean, nullable=False)
+    messages = db.relationship('Message', backref='game', lazy='dynamic')
     __tablename__ = 'Game'
 
     def __repr__(self):
-        return '<Questioner {}, Winner {}>'.format(self.questioner, self.winner)
+        return '<Role: {}, Winner: {}>'.format(self.role, self.winner)
+
+class Message(db.Model):
+    """
+    Message database model. 
+    Every message belongs to a game (game_id).
+    role is either 'user' (was sent by a user) or 'assistant' (was sent by ChatGPT).
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, index=True, nullable=False)
+    game_id = db.Column(db.Integer, db.ForeignKey('Game.id'), nullable=False)
+    role = db.Column(db.String(64), nullable=False)
+    content = db.Column(db.String())
+    __tablename__ = 'Message'
+
+    def __repr__(self):
+        return '<Role: {}, Content: {}'.format(self.role, self.content)
 
 @login.user_loader
 def load_user(id):
