@@ -4,8 +4,10 @@
 <div class="card">
     <h1>New game as the {{ role }}!</h1>
     <div id="chat-box">
-        <div id="chat-history">
+        <div id="chat-history", style="max-width: 400px;">
             <!-- display chat history here -->
+            <p><strong>{{ current_user.username }}:</strong> {{ prompt }}</p>
+            <p><strong>ChatGPT:</strong> {{ reply }}</p>
         </div>
         <div id="chat-input">
             <input type="text" placeholder="Type your message here...">
