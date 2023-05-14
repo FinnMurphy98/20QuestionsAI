@@ -8,6 +8,7 @@ from werkzeug.urls import url_parse
 from datetime import datetime
 from flask_socketio import emit
 from openai import ChatCompletion
+from app.constants import ANSWERER_PROMPT, QUESTIONER_PROMPT
 
 @app.route('/')
 def index():
@@ -86,8 +87,7 @@ def role():
 def new_game(role):
     """
     Route handler for the new_game page.
-    Users can interact with ChatGPT in a game of 20 questions. 
-    Messages are dynamically displayed, and users can end the game upon their choosing. 
+    Users can chat with ChatGPT in a game of 20 questions. 
     Resets session variables for a new game. 
     The initial prompt for ChatGPT will be different depending on the users role.
     Upon valid form submit: every message in the session messages is committed to the database. 
@@ -95,15 +95,9 @@ def new_game(role):
     session['role'] = role
     prompt = ''
     if role == 'Answerer':
-        prompt += "Let's play a game of 20 questions. I'll be the answerer, which means I have to \
-            think of a person, place or thing. You be the questioner. Remember, your only allowed \
-            to ask questions that have yes or no answers, and you have a maximum of 20 questions. \
-            Ok, I've thought of something. Now, ask your first question."
+        prompt += ANSWERER_PROMPT
     elif role == 'Questioner':
-        prompt += "Let's play a game of 20 questions. You can be the answerer, which means you \
-            have to think of a person, place or thing. I'll be the questioner, which means I have to ask \
-            you questions to which you can only respond yes or no. I have to guess correctly in 20 questions \
-            or less. Are you ready?"
+        prompt += QUESTIONER_PROMPT
     # else throw exception
     session['messages'] = [{"timestamp": datetime.utcnow(), "role": "user", "content": prompt}]
     completion = ChatCompletion.create(
@@ -143,4 +137,5 @@ def past_game(gameID):
     Displays the messages, role and winner result for a previously played game. 
     """
     game = Game.query.filter_by(id=gameID).first_or_404()
-    return render_template('past_game.html', game=game)
+    messages = game.messages
+    return render_template('past_game.html', game=game, messages=messages)
