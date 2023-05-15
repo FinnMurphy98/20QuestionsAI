@@ -49,9 +49,15 @@ class User(UserMixin, db.Model):
                 if game.winner:
                     question_wins += 1
         total_wins = answer_wins + question_wins
-        win_rate = round(total_wins / total_games, 2)
-        answer_win_rate = round(answer_wins / answer_games, 2)
-        question_win_rate = round(question_wins / question_games, 2)
+        win_rate = 0
+        if total_games > 0:
+            win_rate = round(total_wins / total_games, 2)
+        answer_win_rate = 0
+        if answer_games > 0:
+            answer_win_rate = round(answer_wins / answer_games, 2)
+        question_win_rate = 0
+        if question_games > 0:
+            question_win_rate = round(question_wins / question_games, 2)
         stats = {
             "total_games": total_games, "total_wins": total_wins, "win_rate": win_rate, 
             "answer_games": answer_games, "answer_wins": answer_wins, "answer_win_rate": answer_win_rate,
