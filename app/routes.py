@@ -1,5 +1,5 @@
 from app import app, db, openai
-from flask import render_template, flash, redirect, url_for, request, session
+from flask import Response, render_template, flash, redirect, url_for, request, session
 from app.forms import LoginForm, RegistrationForm, FinishGameForm
 from flask_login import current_user, login_user
 from app.models import User, Game, Message
@@ -70,7 +70,10 @@ def home(username):
     """
     Route handler for the user home page. 
     Page displays users stats and invites them to begin a new game. 
+    If user is trying to access another users home page, return 403 Forbidden response.
     """
+    if current_user.username != username:
+        return Response(status=403)
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('home.html', user=user)
 
@@ -91,6 +94,7 @@ def new_game(role):
     Resets session variables for a new game. 
     The initial prompt for ChatGPT will be different depending on the users role.
     Upon valid form submit: every message in the session messages is committed to the database. 
+    If the role is not 'Questioner' or 'Answerer', return 404 Not Found response.
     """
     session['role'] = role
     prompt = ''
@@ -98,7 +102,8 @@ def new_game(role):
         prompt += ANSWERER_PROMPT
     elif role == 'Questioner':
         prompt += QUESTIONER_PROMPT
-    # else throw exception
+    else:
+        return Response(status=404)
     session['messages'] = [{"timestamp": datetime.utcnow(), "role": "user", "content": prompt}]
     completion = ChatCompletion.create(
         model = "gpt-3.5-turbo",
@@ -135,7 +140,10 @@ def past_game(gameID):
     """
     Route handler for the past_game page. 
     Displays the messages, role and winner result for a previously played game. 
+    If the game was played by another user, then return 403 Forbidden response.
     """
     game = Game.query.filter_by(id=gameID).first_or_404()
+    if current_user.id != game.user_id:
+        return Response(status=403)
     messages = game.messages
     return render_template('past_game.html', game=game, messages=messages)
