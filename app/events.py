@@ -1,4 +1,4 @@
-from app import socketio, openai
+from app import socketio
 from flask import session
 from flask_socketio import emit
 from datetime import datetime
