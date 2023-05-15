@@ -15,4 +15,4 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABSE_URI = 'sqlite://'
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
