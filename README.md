@@ -18,27 +18,27 @@
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2.  The migration scripts are already in source control. You can create the database if it doesn't exist on your local machine with the command-line: `flask db upgrade`
+2. The migration scripts are already in source control. You can create the database if it doesn't exist on your local machine with the command-line: `flask db upgrade`
 
 3. If you make any changes to the database models, update the migration script using the command-line: `flask db migrate -m "update tables"`
 
 4. Repeat step 2 after updating the migration script.
 
+## Environment Variables
+
+1. Create a file called `.env` in the top level directory which will be ignored by git. 
+
+2. On the first line of your `.env` file, write `SECRET_KEY=`*your_secret_key*
+
+3. On the second line, add your openai api key: `OPENAI_KEY`=*your_openai_api_key*
+
 ## Run the app
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2. If it is your first time running, then you need to create a file in the same directory as this `README.md` file called `.flaskenv`. This file is for adding environment variables. This file will be ignored by git when committing.
+2. Launch the application using the command-line: `flask run`
 
-3. In the `.flaskenv` file, write `FLASK_APP=20questionsAI.py` and save it. 
-
-4. Add a secret key to the `.flaskenv` by writing on a new line: `SECRET_KEY=`*your_secret_key*
-
-5. If you want to run the application with debug mode turned on, then add a new line to the `.flaskenv` file: `FLASK_DEBUG=1`
-
-6. Launch the application using the command-line: `flask run`
-
-7. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
+3. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
 
 ## Website Layout
 

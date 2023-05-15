@@ -1,10 +1,9 @@
 from flask import Flask, Blueprint
-from config import Config, DevConfig
+from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_socketio import SocketIO
-import openai
 
 bp = Blueprint('app', __name__)
 db = SQLAlchemy()
