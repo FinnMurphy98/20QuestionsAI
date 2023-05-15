@@ -165,7 +165,3 @@ cython_debug/
 
 # Database
 app.db
-
-# Other stuff
-key.txt
-chat.py

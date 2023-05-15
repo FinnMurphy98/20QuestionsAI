@@ -2,8 +2,7 @@ from app import socketio, openai
 from flask import session
 from flask_socketio import emit
 from datetime import datetime
-from openai import ChatCompletion
-
+from app.openai.chat import chatgpt_response
 
 @socketio.on('message', namespace='/game')
 def handle_message(data):
@@ -18,7 +17,6 @@ def handle_message(data):
     history = []
     for message in session['messages']:
         history.append({'role': message['role'], 'content': message['content']})
-    completion = ChatCompletion.create(model="gpt-3.5-turbo", messages=history)
-    reply = completion['choices'][0]['message']['content']
+    reply = chatgpt_response(history)
     session['messages'].append({"timestamp": datetime.utcnow(), "role": "assistant", "content": reply})
     emit('message', {'message': reply}, broadcast=True)

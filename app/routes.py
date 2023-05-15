@@ -7,8 +7,8 @@ from flask_login import logout_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
 from flask_socketio import emit
-from openai import ChatCompletion
 from app.constants import ANSWERER_PROMPT, QUESTIONER_PROMPT
+from app.openai.chat import chatgpt_response
 
 @app.route('/')
 def index():
@@ -106,11 +106,8 @@ def new_game(role):
     else:
         return Response(status=404)
     session['messages'] = [{"timestamp": datetime.utcnow(), "role": "user", "content": prompt}]
-    completion = ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        messages = [{"role": "user", "content": prompt}]
-    )
-    reply = completion['choices'][0]['message']['content']
+    messages = [{"role": "user", "content": prompt}]
+    reply = chatgpt_response(messages)
     session['messages'].append({"timestamp": datetime.utcnow(), "role": "assistant", "content": reply})
     form = FinishGameForm()
     if form.validate_on_submit():
