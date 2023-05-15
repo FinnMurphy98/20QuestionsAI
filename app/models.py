@@ -29,6 +29,35 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def stats(self):
+        """
+        Calculate and return the users game statistics 
+        """
+        total_games = self.games.count()
+        answer_games = 0
+        answer_wins = 0
+        question_games = 0
+        question_wins = 0
+        for game in self.games:
+            if game.role == 'Answerer':
+                answer_games += 1
+                if game.winner:
+                    answer_wins += 1
+            else:
+                question_games += 1
+                if game.winner:
+                    question_wins += 1
+        total_wins = answer_wins + question_wins
+        win_rate = round(total_wins / total_games, 2)
+        answer_win_rate = round(answer_wins / answer_games, 2)
+        question_win_rate = round(question_wins / question_games, 2)
+        stats = {
+            "total_games": total_games, "total_wins": total_wins, "win_rate": win_rate, 
+            "answer_games": answer_games, "answer_wins": answer_wins, "answer_win_rate": answer_win_rate,
+            "question_games": question_games, "question_wins": question_wins, "question_win_rate": question_win_rate
+        }
+        return stats
 
 class Game(db.Model):
     """

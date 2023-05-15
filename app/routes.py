@@ -75,7 +75,8 @@ def home(username):
     if current_user.username != username:
         return Response(status=403)
     user = User.query.filter_by(username=username).first_or_404()
-    return render_template('home.html', user=user)
+    stats = user.stats()
+    return render_template('home.html', user=user, stats=stats)
 
 @app.route('/choose_role', methods=['GET', 'POST'])
 def role():
