@@ -5,6 +5,7 @@
         {% if title %}
         <title>{{ title }} | 20questionsAI</title>
         {% else %}
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='title-icon.jpg') }}">
         <title>20questionsAI</title>
         {% endif %}
         <meta charset="utf-8">
