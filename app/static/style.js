@@ -18,3 +18,29 @@ function dropdown() {
 }
 
 
+// history
+var currentPage = {{ current_page }};
+var totalPageCount = {{ total_pages }};
+
+function changePage(direction) {
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next' && currentPage < totalPageCount) {
+        currentPage++;
+    }
+    updatePageInfo();
+}
+
+function jumpToPage() {
+    var jumpInput = document.getElementById('jump-input');
+    var jumpPage = parseInt(jumpInput.value);
+    if (!isNaN(jumpPage) && jumpPage >= 1 && jumpPage <= totalPageCount) {
+        currentPage = jumpPage;
+        updatePageInfo();
+    }
+    jumpInput.value = '';
+}
+
+function updatePageInfo() {
+    document.getElementById('current-page').textContent = currentPage;
+}

@@ -1,15 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="card">
-        <h1>Previous games</h1>
-        <input class="history-input" type="text" placeholder="Search for previous games">
-        <button class="search">Search</button>
-    
-        <ul>
-            {% for game in games %}
-            <li class="history-record"><a href="{{ url_for('app.past_game', gameID=game.id) }}">Click to view</a> <b>Role</b> = {{ game.role }}, <b>Winner</b> = {{ game.winner }}, <b>Date</b> = {{ game.timestamp}}</li>
-            {% endfor %}
-        </ul>
+<div class="card">
+    <h1>Previous games</h1>
+    <input class="history-input" type="text" placeholder="Search for previous games">
+    <button class="search">Search</button>
+
+    <div class="table-container">
+        <table class="game-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Role</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                <tr class="game-row" onclick="window.location.href='{{ url_for('app.past_game', gameID=game.id) }}';">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ 'Answerer' if game.role == 'Answerer' else 'Questioner' }}</td>
+                    <td>{{ 'Winner' if game.winner else 'Loser' }}</td>
+                    <td>{{ game.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
+    <div class="pagination">
+        <button class="prev-btn" onclick="changePage('prev')">Previous</button>
+        <span class="page-info">Page <span id="current-page">{{ current_page }}</span> of <span id="total-pages">{{ total_pages }}</span></span>
+        <button class="next-btn" onclick="changePage('next')">Next</button>
+        <input type="text" id="jump-input" placeholder="Jump to page">
+        <button class="jump-btn" onclick="jumpToPage()">Go</button>
+    </div>
+</div>
+
 {% endblock %}

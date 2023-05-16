@@ -264,6 +264,66 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin: 10px;
 }
 
+/* new */
+.table-container {
+    overflow-x: auto;
+    margin: 20px;
+
+}
+  
+  .game-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+  .game-table th,
+  .game-table td {
+    padding: 8px;
+}
+  
+  .game-table th {
+    text-align: center;
+}
+  
+  .game-row:hover {
+    cursor: pointer;
+    background-color: #e6e6e6;
+}
+  
+  .pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+  
+  .prev-btn,
+  .next-btn,
+  .jump-btn {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #723bad;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+  
+  .prev-btn:hover,
+  .next-btn:hover,
+  .jump-btn:hover {
+    background-color: #723bad21;
+}
+
+  .page-info {
+    margin: 0 10px;
+}
+  
+  #jump-input {
+    width: 50px;
+}
+  
+
+
+
+
 /* newgame.html */
 
 .send {
