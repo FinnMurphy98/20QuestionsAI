@@ -1,10 +1,10 @@
 /* base.html */
 .background-img {
-    background-image: url('/static/view-3d-button.jpg');
+    background-image: url('/static/-min.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-    min-height: 100vh;
+    background-position: center;
+    height: 100vh;
 }
 .navbar {
     display: flex;
@@ -18,7 +18,7 @@
     font-size: large;
     font-weight: bold;
     font-variant:small-caps;
-    color: #2a2b2bc8;
+    color: #be2d4cd6;
     padding: 10px 13px;
     border-radius: 10px;
 }
@@ -35,9 +35,8 @@
 
 .menu {
     outline: solid 1px #d8d7d7;
-    color: #3a45a4;
+    color: #723bad;
     font-weight: bold;
-    font-size: 16px;
     padding: 10px 13px;
     margin: 0 7px;
     border-radius: 10px;
@@ -46,15 +45,15 @@
 
 
 .navbar a:hover {
-    background-color: #3a45a40d;
+    background-color: #723bad21;
 }
 
 .navbar a.active {
-    background-color: #3a45a40d;
+    background-color: #723bad21;
 }
 
 .dropbtn {
-    color: #3a45a4;
+    color: #e89126da;
     font-weight: bold;
     padding: 10px 13px;
     font-size: 17px;
@@ -65,9 +64,11 @@
     margin-left: auto;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3a45a40d;
+/* .dropbtn:hover,  */
+.dropbtn:focus {
+    background-color: #e891261f;
 }
+
 
 
 .dropdown {
@@ -96,7 +97,7 @@
 }
 
 .dropdown-content a:hover {
-    background-color: #20202035;
+    background-color: #e891261f;
     border-radius: 10px;
 }
 
@@ -105,7 +106,7 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3a45a40d;
+    background-color: #e891261f;
 }
   
 hr {
@@ -125,28 +126,36 @@ hr {
     display: block;
     width: 100%;
     height: 100%;
-    filter: invert(25%) sepia(40%) saturate(3519%) hue-rotate(234deg) brightness(80%) contrast(70%);
+    filter: invert(25%) sepia(40%) saturate(3519%) hue-rotate(270deg) brightness(80%) contrast(70%); 
+
 }
 
 
 
-/* 新增的样式，使下拉菜单在小屏幕上正常显示 */
+/* suit mobile screen */
 @media screen and (max-width: 600px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
+        border: none;
     } 
 
     .left {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .right {
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
-    .icon img{
+    .icon {
         display: none; 
+    }
+    
+    .menu{
+        outline: none;
+        padding: 5px;
+        margin: 3px;
     }
 
     .dropdown {
