@@ -1,6 +1,6 @@
 /* base.html */
 .background-img {
-    background-image: url('/static/-min.jpg');
+    background-image: url('/static/background-img.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -20,8 +20,17 @@
     font-variant:small-caps;
     color: #be2d4cd6;
     padding: 10px 13px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
+
+.title:hover {
+    background-color: #be2d4c22;
+}
+
+.title.active {
+    background-color: #be2d4c22;
+}
+
 
 .left {
     display: flex;
@@ -43,12 +52,11 @@
     text-decoration: none;
 }
 
-
-.navbar a:hover {
+.navbar .menu:hover {
     background-color: #723bad21;
 }
 
-.navbar a.active {
+.navbar .menu.active {
     background-color: #723bad21;
 }
 
@@ -64,7 +72,7 @@
     margin-left: auto;
 }
 
-/* .dropbtn:hover,  */
+
 .dropbtn:focus {
     background-color: #e891261f;
 }
@@ -132,8 +140,167 @@ hr {
 
 
 
+/* home.html */
+.home-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    padding: 30px;
+    color: #292828be;
+} 
+
+/* index.html */
+.index-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    padding: 30px;
+    color: #292828be;
+} 
+
+/* login.html register.html*/
+.card {
+    background-color: #f1f0f0f7;
+    color: #723bad;
+    width: max-content;   
+    margin: 150px auto ;
+    border: 1px solid #cccccc71;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #4b4b4b49;
+    padding: 50px;
+}
+
+.card h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    border: none;
+    border-bottom: 2px solid #bcbbbbd0;
+    padding: 5px;
+    outline: none;
+    background-color:transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #292828;
+}
+
+.submit-button {
+    text-align: center;
+  }
+
+.submit-button input[type="submit"] {
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #723bad;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.submit-button input[type="submit"]:hover {
+    background-color: #723bad21;
+}
+
+.new-user a {
+    color: #282828a8;
+}
+
+
+/* role.html */
+.roles {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.role {
+    text-decoration: none;
+    padding: 9px;
+    margin: 10px;
+    color: #723bad;
+    border: solid 2px #d8d7d7;
+    border-radius: 20px;
+}
+
+.role:hover {
+    background-color: #723bad21;
+}
+
+/* history.html */
+.search {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #723bad;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.search:hover {
+    background-color: #723bad21;
+}
+
+.history-input {
+    width: 250px;
+}
+
+.history-record {
+    color: #555353d9;
+}
+
+.history-record a {
+    color: #723bad;
+    font-weight: bold;
+    text-decoration: none;
+    border: dotted 2px #a4a4a4;
+    padding: 6px 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* newgame.html */
+.send {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #723bad;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.send:hover {
+    background-color: #723bad21;
+}
+
+#chat-history p {
+    color: #3e3e3ef5;
+}
+
+#chat-input input {
+    width: 300px;
+}
+
+.finish input[type="submit"] {
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #723bad;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.finish input[type="submit"]:hover {
+    background-color: #723bad21;
+}
+
+
 /* suit mobile screen */
 @media screen and (max-width: 600px) {
+    /* home */
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -174,149 +341,9 @@ hr {
         padding: 5px 0;
     }
     
-}
-
-
-/* index */
-@keyframes blink {
-    0% {
-        opacity: 1;
+    .card {
+        width: 70%;
+        
     }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-.blink {
-    padding: 30px;
-    animation: blink 3s infinite;
-    text-align: center;
-    color: #3a45a4;
-}
-
-/* login.html register.html*/
-.card {
-    text-align: center; 
-    color: #3a45a4c9;
-    width: max-content;   
-    margin: 50px auto ;
-    border: 1px solid #cccccc71;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #4b4b4b49;
-    padding: 40px;
-}
-
-.card h1 {
-   
-    font-weight: bolder;
-    font-size: 30px;
-    margin-bottom: 30px;
-    margin-top: 5px;
-}
-
-input[type="text"], input[type="password"] {
-    border: none;
-    border-bottom: 2px solid #bcbbbbd0;
-    padding: 5px;
-    outline: none;
-    background-color:transparent;
-    transition: border-color 0.3s ease-in-out;
-}
-
-input[type="text"]:focus, input[type="password"]:focus {
-    border-color: #292828;
-}
-
-.submit-button input[type="submit"] {
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3a45a4;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-
-.submit-button input[type="submit"]:hover {
-    background-color: #3a45a40d;
-}
-
-.new-user a {
-    color: #282828a8;
-
-}
-
-
-/* role.html */
-.card .role {
-    text-decoration: none;
-    padding: 9px;
-    margin: 10px;
-    color: #3a45a4;
-    border: solid 2px #d8d7d7;
-    border-radius: 20px;
-}
-.card .role:hover {
-    background-color: #3a45a40d;
-}
-
-/* history.html */
-.search {
-    margin-left: 5px;
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3a45a4;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-.search:hover {
-    background-color: #3a45a40d;
-}
-
-.history-input {
-    width: 250px;
-}
-
-.history-record {
-    color: #555353d9;
-}
-
-.history-record a {
-    color: #3a45a4;
-    font-weight: bold;
-    text-decoration: none;
-    border: dotted 2px #a4a4a4;
-    padding: 6px 10px;
-    border-radius: 10px;
-    margin: 10px;
-}
-
-/* newgame.html */
-.send {
-    margin-left: 5px;
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3a45a4;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-.send:hover {
-    background-color: #3a45a40d;
-}
-
-#chat-input input {
-    width: 300px;
-}
-
-.finish input[type="submit"] {
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3a45a4;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-
-.finish input[type="submit"]:hover {
-    background-color: #3a45a40d;
 }

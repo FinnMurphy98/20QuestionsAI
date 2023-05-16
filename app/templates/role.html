@@ -3,7 +3,9 @@
 {% block content %}
 <div class="card">
     <h1>Choose your role for the new game.</h1>
-    <a class="role" href="{{ url_for('app.new_game', role='Answerer') }}">Answerer</a>
-    <a class="role" href="{{ url_for('app.new_game', role='Questioner') }}">Questioner</a>
+    <div class="roles">
+        <a class="role" href="{{ url_for('app.new_game', role='Answerer') }}">Answerer</a>
+        <a class="role" href="{{ url_for('app.new_game', role='Questioner') }}">Questioner</a>
+    </div>    
 </div>
 {% endblock %}
