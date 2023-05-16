@@ -19,24 +19,25 @@
                 {% if current_user.is_anonymous %}
                 <a class="menu" href="{{ url_for('app.login') }}">Log In</a>
                 {% else %}
-                <div class="small-menu">
-                    <a class="menu" href="{{ url_for('app.home', username=current_user.username) }}">
-                        <span class="icon">
-                            <img src="{{ url_for('static', filename='home_icon.png') }}" alt="Home">
-                        </span>
-                        Home
-                    </a>
-                    <a class="menu" href="{{ url_for('app.role') }}">
-                        <span class="icon">
-                            <img src="{{ url_for('static', filename='games_icon.png') }}" alt="New Game">
-                        </span>
-                        New Game</a>
-                    <a class="menu" href="{{ url_for('app.history') }}">
-                        <span class="icon">
-                            <img src="{{ url_for('static', filename='history_icon.png') }}" alt="History">
-                        </span>
-                        History</a>
-                </div>
+                
+                <a class="menu" href="{{ url_for('app.home', username=current_user.username) }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='home_icon.png') }}" alt="Home">
+                    </span>
+                    Home
+                </a>
+                <a class="menu" href="{{ url_for('app.role') }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='games_icon.png') }}" alt="New Game">
+                    </span>
+                    New Game</a>
+                <a class="menu" href="{{ url_for('app.history') }}">
+                    <span class="icon">
+                        <img src="{{ url_for('static', filename='history_icon.png') }}" alt="History">
+                    </span>
+                    History
+                </a>
+                   
                 {% endif %}
             </div>
             <div class="right">

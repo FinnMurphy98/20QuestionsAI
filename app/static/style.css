@@ -37,12 +37,13 @@
     outline: solid 1px #d8d7d7;
     color: #3a45a4;
     font-weight: bold;
-    /* font-size: 16px; */
+    font-size: 16px;
     padding: 10px 13px;
     margin: 0 7px;
     border-radius: 10px;
     text-decoration: none;
 }
+
 
 .navbar a:hover {
     background-color: #3a45a40d;
@@ -127,23 +128,14 @@ hr {
     filter: invert(25%) sepia(40%) saturate(3519%) hue-rotate(234deg) brightness(80%) contrast(70%);
 }
 
-/* .user-icon {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 2px;
-    vertical-align:middle;
-} */
 
 
-
-/* suit the mobile screen */
+/* 新增的样式，使下拉菜单在小屏幕上正常显示 */
 @media screen and (max-width: 600px) {
     .navbar {
         flex-direction: column;
-        /* align-items: flex-start; */
-        border: none;
-    }
+        align-items: flex-start;
+    } 
 
     .left {
         margin-bottom: 10px;
@@ -154,7 +146,7 @@ hr {
     }
 
     .icon img{
-        display: none; /* hide icons */
+        display: none; 
     }
 
     .dropdown {
