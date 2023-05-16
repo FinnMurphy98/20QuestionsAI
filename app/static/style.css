@@ -163,7 +163,7 @@ hr {
 /* login.html register.html*/
 .card {
     background-color: #f1f0f0f7;
-    color: #723bad;
+    color: #3e3e3ef5;
     width: max-content;   
     margin: 150px auto ;
     border: 1px solid #cccccc71;
@@ -200,17 +200,17 @@ input[type="text"]:focus, input[type="password"]:focus {
 .submit-button input[type="submit"] {
     background-color: transparent;
     border: 2px solid #d8d7d7;
-    color: #723bad;
+    color: #3e3e3ef5;
     padding: 8px 15px;
     border-radius: 20px;
 }
 
 .submit-button input[type="submit"]:hover {
-    background-color: #723bad21;
+    background-color: #3e3e3e1e;
 }
 
 .new-user a {
-    color: #282828a8;
+    color: #723bad;
 }
 
 
@@ -224,13 +224,13 @@ input[type="text"]:focus, input[type="password"]:focus {
     text-decoration: none;
     padding: 9px;
     margin: 10px;
-    color: #723bad;
+    color: #3e3e3ef5;
     border: solid 2px #d8d7d7;
     border-radius: 20px;
 }
 
 .role:hover {
-    background-color: #723bad21;
+    background-color: #3e3e3e1e;
 }
 
 /* history.html */
@@ -265,36 +265,86 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 /* newgame.html */
+
 .send {
     margin-left: 5px;
     background-color: transparent;
     border: 2px solid #d8d7d7;
-    color: #723bad;
+    color: #3e3e3ef5;
     padding: 8px 15px;
     border-radius: 20px;
 }
 .send:hover {
+    background-color: #3e3e3e1e;
+}
+
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#chat-history {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.message {
+    word-wrap: break-word;
+}
+
+.user-message {
+    color: #3e3e3ef5;
+    width:fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end;
+    background-color: #dcf8c6d5;
+}
+
+.gpt-message {
+    color: #3e3e3ef5;
+    width:fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-start;
     background-color: #723bad21;
 }
 
-#chat-history p {
+.game-user {
     color: #3e3e3ef5;
+    font-weight: bold;
+    text-align: end;
+}
+.game-gpt {
+    color: #3e3e3ef5;
+    font-weight: bold;
+
 }
 
+
+
 #chat-input input {
+    margin-top: 20px;
     width: 300px;
+}
+
+.finish {
+    margin-top: 10px;
+    text-align: center;
 }
 
 .finish input[type="submit"] {
     background-color: transparent;
     border: 2px solid #d8d7d7;
-    color: #723bad;
+    color: #3e3e3ef5;
     padding: 8px 15px;
     border-radius: 20px;
 }
 
 .finish input[type="submit"]:hover {
-    background-color: #723bad21;
+    background-color: #3e3e3e1e;
 }
 
 

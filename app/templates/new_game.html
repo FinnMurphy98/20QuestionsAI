@@ -6,8 +6,14 @@
     <div id="chat-box">
         <div id="chat-history", style="max-width: 400px;">
             <!-- display chat history here -->
-            <p><strong>{{ current_user.username }}:</strong> {{ prompt }}</p>
-            <p><strong>ChatGPT:</strong> {{ reply }}</p>
+            <div class="message">
+                <p class="game-user">{{ current_user.username }}</p> 
+                <p class="user-message">{{ prompt }}</p>
+            </div> 
+            <div class="message">
+                <p class="game-gpt">ChatGPT</p> 
+                <p class="gpt-message">{{ reply }}</p>
+            </div>
         </div>
         <div id="chat-input">
             <input type="text" placeholder="Type your message here...">
@@ -17,7 +23,7 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>{{ form.winner() }} {{ form.winner.label }}</p>
-        <p class="finish">{{ form.submit() }}</p>
+        <div class="finish"><p >{{ form.submit() }}</p></div>
     </form>
 </div>
 {% endblock %}
