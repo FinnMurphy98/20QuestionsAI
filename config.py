@@ -11,7 +11,7 @@ class Config(object):
     OPENAI_KEY = os.environ.get('OPENAI_KEY')
 
 class DevConfig(Config):
-    FLASK_DEBUG = 1
+    FLASK_DEBUG = True
 
 class TestConfig(Config):
     TESTING = True

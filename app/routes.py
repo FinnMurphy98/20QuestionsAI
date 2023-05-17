@@ -117,7 +117,7 @@ def new_game(role):
             message = Message(timestamp=msg['timestamp'], game_id=game.id, role=msg['role'], content=msg['content'])
             db.session.add(message)
         db.session.commit()
-        return redirect(url_for('app.home', username=current_user.username))
+        return redirect(url_for('app.history'))
     return render_template('new_game.html', role=role, form=form, prompt=prompt, reply=reply)
 
 @bp.route('/history', methods=['GET', 'POST'])
@@ -128,8 +128,10 @@ def history():
     Displays users past games in order of most recent by default. 
     User can filter which games are displayed on the page by date, role and winner. 
     """
-    games = current_user.games
-    return render_template('history.html', games=games)
+    page = request.args.get('page', 1, type=int)
+    all_games = current_user.games.order_by(Game.timestamp.desc())
+    games = all_games.paginate(page=page, per_page=15)
+    return render_template('history.html', games=games.items)
 
 @bp.route('/history/<gameID>')
 @login_required
