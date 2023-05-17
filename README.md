@@ -1,5 +1,7 @@
 # 20QuestionsAI
 
+![Tests](https://github.com/FinnMurphy98/20questionsAI/actions/workflows/tests.yml/badge.svg)
+
 ## Virtual Environment Setup & Installations
 
 1. Download and install Python version 3.11.3

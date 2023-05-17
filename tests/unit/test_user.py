@@ -1,8 +1,9 @@
 from app import create_app, db
 from app.models import User, Game
 from config import TestConfig
-from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.exc import IntegrityError
 import unittest
+import pytest
 
 class TestUserModel(unittest.TestCase):
     """
@@ -31,6 +32,41 @@ class TestUserModel(unittest.TestCase):
         user = User(username=username, email=email)
         self.assertEqual(username, user.username)
         self.assertEqual(email, user.email)
+
+    def test_username_not_nullable(self):
+        """
+        GIVEN a user with no username
+        WHEN it is commited to the database
+        THEN it should raise an integrity error
+        """
+        user1 = User(email='bob@email.com')
+        user1.set_password('123')
+        db.session.add(user1)
+        with pytest.raises(IntegrityError):
+            db.session.commit()
+    
+    def test_email_not_nullable(self):
+        """
+        GIVEN a user with no email
+        WHEN it is commited to the database
+        THEN it should raise an integrity error
+        """
+        user = User(username='Bob')
+        user.set_password('123')
+        db.session.add(user)
+        with pytest.raises(IntegrityError):
+            db.session.commit()
+
+    def test_password_not_nullable(self):
+        """
+        GIVEN a user with no password
+        WHEN it is commited to the database
+        THEN it should raise an integrity error
+        """
+        user = User(username='Bill', email='bill@email.com')
+        db.session.add(user)
+        with pytest.raises(IntegrityError):
+            db.session.commit()
 
     def test_set_password(self):
         """
@@ -87,3 +123,17 @@ class TestUserModel(unittest.TestCase):
         self.assertEqual(stats['question_games'], 10)
         self.assertEqual(stats['question_wins'], 5)
         self.assertEqual(stats['question_win_rate'], 0.5)
+        user2 = User(username='Bill', email='bill@email.com')
+        user2.set_password('123')
+        db.session.add(user2)
+        db.session.commit()
+        stats2 = user2.stats()
+        self.assertEqual(stats2['total_games'], 0)
+        self.assertEqual(stats2['total_wins'], 0)
+        self.assertEqual(stats2['win_rate'], 0)
+        self.assertEqual(stats2['answer_games'], 0)
+        self.assertEqual(stats2['answer_wins'], 0)
+        self.assertEqual(stats2['answer_win_rate'], 0)
+        self.assertEqual(stats2['question_games'], 0)
+        self.assertEqual(stats2['question_wins'], 0)
+        self.assertEqual(stats2['question_win_rate'], 0)
