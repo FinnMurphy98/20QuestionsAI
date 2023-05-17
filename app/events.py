@@ -19,4 +19,4 @@ def handle_message(data, role):
         history.append({'role': message['role'], 'content': message['content']})
     reply = chatgpt_response(history)
     session['messages'].append({"timestamp": datetime.utcnow(), "role": "assistant", "content": reply})
-    emit('message', {'message': reply}, broadcast=True)
+    emit('message', {'message': reply}, broadcast=True, namespace='/game/' + role)
