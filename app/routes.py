@@ -131,7 +131,7 @@ def history():
     page = request.args.get('page', 1, type=int)
     all_games = current_user.games.order_by(Game.timestamp.desc())
     games = all_games.paginate(page=page, per_page=15)
-    return render_template('history.html', games=games.items)
+    return render_template('history.html', games=games)
 
 @bp.route('/history/<gameID>')
 @login_required
