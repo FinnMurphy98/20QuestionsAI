@@ -6,6 +6,7 @@
     <div id="chat-box">
         <div id="chat-history", style="max-width: 400px;">
             <!-- display chat history here -->
+           
             <div class="message">
                 <p class="game-user">{{ current_user.username }}</p> 
                 <p class="user-message">{{ prompt }}</p>
@@ -14,10 +15,10 @@
                 <p class="game-gpt">ChatGPT</p> 
                 <p class="gpt-message">{{ reply }}</p>
             </div>
-        </div>
+        </div> 
         <div id="chat-input">
-            <input type="text" placeholder="Type your message here...">
-            <button class="send">Send</button>
+            <input type="text" id="message-input" placeholder="Type your message here...">
+            <button class="send" onclick="sendMessage()">Send</button>
         </div>
     </div>
     <form action="" method="post" novalidate>
@@ -26,4 +27,45 @@
         <div class="finish"><p >{{ form.submit() }}</p></div>
     </form>
 </div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.min.js"></script>
+<script>
+ 
+    var socket = io.connect('http://127.0.0.1:5000/game/' + '{{ role }}');
+
+
+    socket.on('connect', function() {
+        console.log('Connected to server');
+    });
+
+    socket.on('message', function(data) {
+
+        var role = data.role;
+        var content = data.content;
+        addMessageToChatBox(role, content);
+        addMessageToChatBox('gpt', data.reply);
+    });
+
+    function sendMessage() {
+        var messageInput = document.getElementById('message-input');
+        var message = messageInput.value;
+
+        addMessageToChatBox('user', message);
+
+        socket.emit('message', { message: message });
+
+        messageInput.value = '';
+    }
+
+    function addMessageToChatBox(role, content) {
+        var chatHistory = document.getElementById('chat-history');
+        var messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.innerHTML = '<p class="game-' + role + '">' + role + '</p>' +
+                               '<p class="' + role + '-message">' + content + '</p>';
+        chatHistory.appendChild(messageDiv);
+    }
+
+</script>
 {% endblock %}
