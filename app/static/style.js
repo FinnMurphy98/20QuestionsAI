@@ -19,7 +19,7 @@ function dropdown() {
 
 
 // history
-// function of change the page 
+// function of changing page
 function changePage(direction) {
     var currentPage = parseInt(document.getElementById("current-page").textContent);
     var totalPages = parseInt(document.getElementById("total-pages").textContent);
