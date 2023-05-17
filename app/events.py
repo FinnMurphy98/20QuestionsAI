@@ -4,8 +4,8 @@ from flask_socketio import emit
 from datetime import datetime
 from app.openai.chat import chatgpt_response
 
-@socketio.on('message', namespace='/game')
-def handle_message(data):
+@socketio.on('message', namespace='/game/<role>')
+def handle_message(data, role):
     """
     Handler function for message events. 
     First it gets the message that was sent by the client, and adds it to the list of session messages. 
