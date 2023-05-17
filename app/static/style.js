@@ -19,28 +19,25 @@ function dropdown() {
 
 
 // history
-var currentPage = {{ current_page }};
-var totalPageCount = {{ total_pages }};
-
+// function of change the page 
 function changePage(direction) {
-    if (direction === 'prev' && currentPage > 1) {
-        currentPage--;
-    } else if (direction === 'next' && currentPage < totalPageCount) {
-        currentPage++;
+    var currentPage = parseInt(document.getElementById("current-page").textContent);
+    var totalPages = parseInt(document.getElementById("total-pages").textContent);
+    var jumpInput = document.getElementById("jump-input");
+    
+    if (direction === "prev" && currentPage > 1) {
+        window.location.href = "{{ url_for('app.history') }}?page=" + (currentPage - 1);
+    } else if (direction === "next" && currentPage < totalPages) {
+        window.location.href = "{{ url_for('app.history') }}?page=" + (currentPage + 1);
     }
-    updatePageInfo();
 }
 
+// function of jumping to page by input 
 function jumpToPage() {
-    var jumpInput = document.getElementById('jump-input');
-    var jumpPage = parseInt(jumpInput.value);
-    if (!isNaN(jumpPage) && jumpPage >= 1 && jumpPage <= totalPageCount) {
-        currentPage = jumpPage;
-        updatePageInfo();
+    var jumpInput = document.getElementById("jump-input");
+    var page = parseInt(jumpInput.value);
+    
+    if (!isNaN(page) && page >= 1 && page <= {{ games.pages }}) {
+            window.location.href = "{{ url_for('app.history') }}?page=" + page;
     }
-    jumpInput.value = '';
-}
-
-function updatePageInfo() {
-    document.getElementById('current-page').textContent = currentPage;
 }

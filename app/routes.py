@@ -129,8 +129,9 @@ def history():
     User can filter which games are displayed on the page by date, role and winner. 
     """
     page = request.args.get('page', 1, type=int)
+    per_page = 15
     all_games = current_user.games.order_by(Game.timestamp.desc())
-    games = all_games.paginate(page=page, per_page=15)
+    games = all_games.paginate(page=page, per_page=per_page)
     return render_template('history.html', games=games)
 
 @bp.route('/history/<gameID>')

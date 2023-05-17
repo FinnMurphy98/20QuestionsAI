@@ -17,23 +17,25 @@
                 </tr>
             </thead>
             <tbody>
-                {% for game in games %}
+                {% set row_number = (games.page - 1) * games.per_page + 1 %}
+                {% for game in games.items %}
                 <tr class="game-row" onclick="window.location.href='{{ url_for('app.past_game', gameID=game.id) }}';">
-                    <td>{{ loop.index }}</td>
+                    <td>{{ (games.page - 1) * games.per_page + loop.index }}</td>
                     <td>{{ 'Answerer' if game.role == 'Answerer' else 'Questioner' }}</td>
                     <td>{{ 'Winner' if game.winner else 'Loser' }}</td>
                     <td>{{ game.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                 </tr>
+                {% set row_number = row_number + 1 %}
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
     <div class="pagination">
-        <button class="prev-btn" onclick="changePage('prev')">Previous</button>
-        <span class="page-info">Page <span id="current-page">{{ current_page }}</span> of <span id="total-pages">{{ total_pages }}</span></span>
-        <button class="next-btn" onclick="changePage('next')">Next</button>
-        <input type="text" id="jump-input" placeholder="Jump to page">
+        <button class="prev-btn" {% if games.has_prev %}onclick="changePage('prev')" {% else %}disabled {% endif %}>Previous</button>
+        <span class="page-info">Page <span id="current-page">{{ games.page }}</span> of <span id="total-pages">{{ games.pages }}</span></span>
+        <button class="next-btn" {% if games.has_next %}onclick="changePage('next')" {% else %}disabled {% endif %}>Next</button>
+        <input type="text" id="jump-input" min="1" max="{{ games.pages }}" placeholder="Jump to page">
         <button class="jump-btn" onclick="jumpToPage()">Go</button>
     </div>
 </div>
