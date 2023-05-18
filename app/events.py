@@ -4,7 +4,7 @@ from flask_socketio import emit
 from datetime import datetime
 from app.openai.chat import chatgpt_response
 
-@socketio.on('connect')
+@socketio.on('connect', namespace='/game/Answerer')
 def handle_connect():
     print('Client connected')
 
@@ -17,7 +17,6 @@ def handle_message(data):
     Then adds the response to the list of session messages. 
     Then broadcasts the response back to the client.
     """
-    print('server hello')
     session['messages'].append({"timestamp": datetime.utcnow(), "role": "user", "content": data['message']})
     history = []
     for message in session['messages']:
