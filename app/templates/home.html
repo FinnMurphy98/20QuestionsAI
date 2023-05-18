@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="home-title">
-    <h1>Welcome {{ user.username }}!</h1>
+<div class="card">
+    <div class="home-title">
+        <h1>Welcome <p>{{ user.username }}</p>!</h1>
+        <h2>Choose your role for the new game.</h2>
+        <a class="role" href="{{ url_for('app.new_game', role='Answerer') }}">Answerer</a>
+        <a class="role" href="{{ url_for('app.new_game', role='Questioner') }}">Questioner</a>
+    </div>
 </div>
 {% endblock %}

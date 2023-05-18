@@ -142,13 +142,29 @@ hr {
 
 /* home.html */
 .home-title {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    text-align: center;
+    /* height: 65vh; */
     padding: 30px;
     color: #292828be;
 } 
+
+.home-title h1 {
+    display: inline;
+}
+
+.home-title p {
+    color: #e89126da;
+    display: inline;
+    margin: 5px;
+}
+
+.home-title h2,
+.home-title a {
+    margin: 50px 30px;
+}
 
 /* index.html */
 .index-title {
