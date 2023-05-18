@@ -96,7 +96,6 @@ def new_game(role):
     Upon valid form submit: every message in the session messages is committed to the database. 
     If the role is not 'Questioner' or 'Answerer', return 404 Not Found response.
     """
-    session['role'] = role
     prompt = ''
     if role == 'Answerer':
         prompt += ANSWERER_PROMPT

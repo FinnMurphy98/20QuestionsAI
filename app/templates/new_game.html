@@ -31,7 +31,7 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.min.js"></script>
 <script>
- 
+
     var socket = io.connect('http://127.0.0.1:5000/game/' + '{{ role }}');
 
 
@@ -45,7 +45,7 @@
         var reply = data.reply;
         addMessageToChatBox(role, content, reply);
     });
-    
+
 
     function sendMessage() {
         var messageInput = document.getElementById('message-input');
@@ -54,7 +54,7 @@
         addMessageToChatBox('user', message, null);
 
         socket.emit('message', { message: message });
-
+        
         messageInput.value = '';
     }
 

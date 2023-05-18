@@ -1,10 +1,13 @@
-from app import create_app, db
+from app import create_app, db, socketio
 from config import DevConfig
 from app.models import User, Game, Message
 import openai
 
 app = create_app(config_class=DevConfig)
 openai.api_key = app.config.get('OPENAI_KEY')
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True)
 
 @app.shell_context_processor
 def make_shell_context():

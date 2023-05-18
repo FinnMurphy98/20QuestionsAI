@@ -22,7 +22,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
-    socketio.init_app(app)
+    socketio.init_app(app, namespaces=['/game/Answerer', '/game/Questioner'])
     app.register_blueprint(bp)
     return app
 
