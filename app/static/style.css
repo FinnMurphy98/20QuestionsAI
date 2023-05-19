@@ -1,11 +1,11 @@
 /* base.html */
 .background-img {
     background-image: url('/static/background-img.jpg');
-    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 110vh;
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -146,7 +146,6 @@ hr {
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* height: 65vh; */
     padding: 30px;
     color: #292828be;
 } 
@@ -171,10 +170,48 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65vh;
-    padding: 30px;
+    padding: 20px;
     color: #292828be;
 } 
+
+.index-title h1 {
+    font-size: 36px;
+    color: #292828be;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.index-description {
+    max-width: 900px;
+    margin-top: -30px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.highlight {
+    color: #be2d4cd6;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.index-description p {
+    margin-bottom: 20px;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* login.html register.html*/
 .card {
@@ -497,7 +534,15 @@ input[type="text"]:focus, input[type="password"]:focus {
     
     .card {
         width: 70%;
+        margin-bottom: 0px;
         
+    }
+
+    .background-img {
+        background-repeat: repeat;
+        background-size: contain;
+        background-position: center;
+        height: max-content;
     }
 
 }

@@ -30,4 +30,10 @@ var modal = document.getElementById("error-modal");
         }
     }
 
+document.addEventListener('DOMContentLoaded', function() {
+    var descriptions = document.querySelectorAll('.index-description p');
+    for (var i = 0; i < descriptions.length; i++) {
+        descriptions[i].classList.add('fade-in');
+    }
+});
 
