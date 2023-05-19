@@ -17,6 +17,17 @@ function dropdown() {
     }
 }
 
-
+var modal = document.getElementById("error-modal");
+    var span = document.getElementsByClassName("close")[0];
+    
+    if (modal) {
+        modal.style.display = "block";
+    }
+    
+    if (span) {
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    }
 
 

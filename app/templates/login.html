@@ -9,17 +9,19 @@
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
         </p>
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
         </p>
+        {% if error_message %}
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>{{ error_message }}</p>
+            </div>
+        </div>
+        {% endif %}
         <p class="remember-me">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p class="submit-button">{{ form.submit() }}</p>
         <p class="new-user">New User? <a href="{{ url_for('app.register') }}"> Click to Register!</a></p>
