@@ -21,17 +21,16 @@ class TestUserModel(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def test_create(self):
+    def test_repr(self):
         """
         GIVEN a user object
-        WHEN you get its fields
-        THEN those fields should match the arguments passed
+        WHEN you call repr method
+        THEN it should produce the expected string
         """
-        username = 'Bob'
-        email = 'bob@email.com'
-        user = User(username=username, email=email)
-        self.assertEqual(username, user.username)
-        self.assertEqual(email, user.email)
+        user = User(username='Bob', email='bob@email.com')
+        result = user.__repr__()
+        expected = "<User: Bob, Email: bob@email.com>"
+        self.assertEqual(result, expected)
 
     def test_username_not_nullable(self):
         """
@@ -137,3 +136,6 @@ class TestUserModel(unittest.TestCase):
         self.assertEqual(stats2['question_games'], 0)
         self.assertEqual(stats2['question_wins'], 0)
         self.assertEqual(stats2['question_win_rate'], 0)
+
+if __name__ == '__main__':
+    unittest.main()

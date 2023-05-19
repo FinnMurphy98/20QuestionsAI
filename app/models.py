@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
     __tablename__ = 'User'
 
     def __repr__(self):
-        return '<User: {}>'.format(self.username)
+        return '<User: {}, Email: {}>'.format(self.username, self.email)
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -74,7 +74,7 @@ class Game(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     role = db.Column(db.String(64), nullable=False)
     winner = db.Column(db.Boolean, nullable=False)
     messages = db.relationship('Message', backref='game', lazy='dynamic')
@@ -93,8 +93,8 @@ class Message(db.Model):
     timestamp = db.Column(db.DateTime, index=True, nullable=False)
     game_id = db.Column(db.Integer, db.ForeignKey('Game.id'), nullable=False)
     role = db.Column(db.String(64), nullable=False)
-    content = db.Column(db.String())
+    content = db.Column(db.String(), nullable=False)
     __tablename__ = 'Message'
 
     def __repr__(self):
-        return '<Role: {}, Content: {}'.format(self.role, self.content)
+        return '<Role: {}, Content: {}>'.format(self.role, self.content)
