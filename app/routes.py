@@ -120,9 +120,11 @@ def new_game(role):
         return redirect(url_for('app.history'))
     return render_template('new_game.html', role=role, form=form, prompt=prompt, reply=reply)
 
-@bp.route('/history', methods=['GET', 'POST'])
+@bp.route('/history')
+@bp.route('/history/<arg1>')
+@bp.route('/history/<arg1>/<arg2>')
 @login_required
-def history():
+def history(**kwargs):
     """
     Route handler for the history page. 
     Displays users past games in order of most recent by default. 
@@ -130,11 +132,22 @@ def history():
     """
     page = request.args.get('page', 1, type=int)
     per_page = 15
-    all_games = current_user.games.order_by(Game.timestamp.desc())
-    games = all_games.paginate(page=page, per_page=per_page)
-    return render_template('history.html', games=games)
+    filters = list(kwargs.values())
+    games = current_user.games.order_by(Game.timestamp.desc())
+    if ('Answerer' in filters and 'Questioner' in filters) or ('Winner' in filters and 'Loser' in filters):
+        return Response(status=404)
+    if 'Answerer' in filters:
+        games = current_user.games.filter_by(role='Answerer').order_by(Game.timestamp.desc())
+    if 'Questioner' in filters:
+        games = current_user.games.filter_by(role='Questioner').order_by(Game.timestamp.desc())
+    if 'Winner' in filters:
+        games = games.filter_by(winner=True).order_by(Game.timestamp.desc())
+    if 'Loser' in filters:
+        games = games.filter_by(winner=False).order_by(Game.timestamp.desc())
+    paginated = games.paginate(page=page, per_page=per_page)
+    return render_template('history.html', games=paginated)
 
-@bp.route('/history/<gameID>')
+@bp.route('/past_game/<gameID>')
 @login_required
 def past_game(gameID):
     """
