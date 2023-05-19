@@ -2,6 +2,9 @@
 
 ![Tests](https://github.com/FinnMurphy98/20questionsAI/actions/workflows/tests.yml/badge.svg)
 
+---
+# Developer Manual
+
 ## Virtual Environment Setup & Installations
 
 1. Download and install Python version 3.11.3
@@ -26,7 +29,7 @@
 
 4. Repeat step 2 after updating the migration script.
 
-## Environment Variables
+## Secret Environment Variables
 
 1. Create a file called `.env` in the top level directory which will be ignored by git. 
 
@@ -38,9 +41,18 @@
 
 1. With the reopsitory as your current directory and your virtual environment active...
 
-2. Launch the application using the command-line: `flask run`
+2. Launch the application using the command-line: `python3 20questionsAI.py`
 
 3. If the webpage doesn't automatically open on your default browser, then copy the url in the terminal output into a browser window, i.e. http://127.0.0.1:5000
+
+## Testing
+
+1. To run all functional and unit tests in the command-line, run `python -m pytest`. Sometimes deprecaition warnings can be overwhelming, so to ignore them, instead run `python -m pytest -p no:warnings`
+
+2. To see the test coverage as well, run: `python -m pytest --cov=app -p no:warnings`
+
+---
+# User Manual
 
 ## Website Layout
 

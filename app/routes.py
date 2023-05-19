@@ -37,6 +37,7 @@ def login():
     return render_template('login.html', title="Sign In", form=form)
 
 @bp.route('/logout')
+@login_required
 def logout():
     """
     Route handler for logout. 
