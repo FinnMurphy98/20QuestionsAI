@@ -6,16 +6,42 @@
     <input class="history-input" type="text" placeholder="Search for previous games">
     <button class="search" onclick="searchGames()">Search</button>
 
-    <div class="sort-container">
-        <label for="sort-select">Sort by:</label>
-        <select id="sort-select" onchange="sortGames()">
-            <option value="newest">Newest Date</option>
-            <option value="oldest">Oldest Date</option>
-            <option value="answerer">Answerer</option>
-            <option value="questioner">Questioner</option>
-            <option value="winner">Winner</option>
-            <option value="loser">Loser</option>
-        </select>
+    <div class="sort-filter-container">
+        <div class="filter-container">
+            <label class="filter-by">Filter by:</label>
+            <label for="answerer-checkbox">
+                <input type="checkbox" id="answerer-checkbox" onchange="handleCheckboxChange(this)">
+                Answerer
+            </label>
+            <label for="questioner-checkbox">
+                <input type="checkbox" id="questioner-checkbox" onchange="handleCheckboxChange(this)">
+                Questioner
+            </label>
+            <label for="winner-checkbox">
+                <input type="checkbox" id="winner-checkbox" onchange="handleCheckboxChange(this)">
+                Winner
+            </label>
+            <label for="loser-checkbox">
+                <input type="checkbox" id="loser-checkbox" onchange="handleCheckboxChange(this)">
+                Loser
+            </label>
+          </div>
+          
+          
+          
+        <div class="sort-container">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select" onchange="sortGames()">
+                <option value="newest">Newest Date</option>
+                <option value="oldest">Oldest Date</option>
+                <option value="answerer">Answerer</option>
+                <option value="questioner">Questioner</option>
+                <option value="winner">Winner</option>
+                <option value="loser">Loser</option>
+            </select>
+        </div>
+
+        
     </div>
     
     <div class="table-container">
@@ -96,6 +122,59 @@ function searchGames() {
     });
 }
 
+
+function handleCheckboxChange(checkbox) {
+    var winnerCheckbox = document.getElementById('winner-checkbox');
+    var loserCheckbox = document.getElementById('loser-checkbox');
+    var answererCheckbox = document.getElementById('answerer-checkbox');
+    var questionerCheckbox = document.getElementById('questioner-checkbox');
+  
+    if (checkbox.id === 'winner-checkbox' && checkbox.checked) {
+      loserCheckbox.checked = false;
+    } else if (checkbox.id === 'loser-checkbox' && checkbox.checked) {
+      winnerCheckbox.checked = false;
+    } else if (checkbox.id === 'answerer-checkbox' && checkbox.checked) {
+      questionerCheckbox.checked = false;
+    } else if (checkbox.id === 'questioner-checkbox' && checkbox.checked) {
+      answererCheckbox.checked = false;
+    }
+    
+    filterGames();
+  }
+  
+  function filterGames() {
+    var winnerCheckbox = document.getElementById('winner-checkbox');
+    var loserCheckbox = document.getElementById('loser-checkbox');
+    var answererCheckbox = document.getElementById('answerer-checkbox');
+    var questionerCheckbox = document.getElementById('questioner-checkbox');
+  
+    var rows = document.querySelectorAll('.game-row');
+  
+    rows.forEach(function(row) {
+      var role = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+      var result = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+  
+      var showRow = true;
+  
+      if (winnerCheckbox.checked && result !== 'winner') {
+        showRow = false;
+      } else if (loserCheckbox.checked && result !== 'loser') {
+        showRow = false;
+      } else if (answererCheckbox.checked && role !== 'answerer') {
+        showRow = false;
+      } else if (questionerCheckbox.checked && role !== 'questioner') {
+        showRow = false;
+      }
+  
+      if (showRow) {
+        row.style.display = 'table-row';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+  
+
 // function of sorting table rows
 function sortGames() {
     var sortSelect = document.getElementById('sort-select');
@@ -139,5 +218,8 @@ function sortGames() {
         tbody.appendChild(row);
     });
 }
+
+
+  
 </script>
 {% endblock %}
