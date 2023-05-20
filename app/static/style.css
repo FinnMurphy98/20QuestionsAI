@@ -342,6 +342,28 @@ input[type="text"]:focus, input[type="password"]:focus {
     width: 250px;
 }
 
+.sort-container {
+    text-align: right;
+    margin: 20px;
+}
+  
+.sort-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+  
+#sort-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+#sort-select option {
+    background-color: #f1f0f0f7;
+}
+
+
 /* new */
 .table-container {
     overflow-x: auto;

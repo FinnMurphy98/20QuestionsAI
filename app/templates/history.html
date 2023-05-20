@@ -4,8 +4,20 @@
 <div class="card">
     <h1>Previous games</h1>
     <input class="history-input" type="text" placeholder="Search for previous games">
-    <button class="search">Search</button>
+    <button class="search" onclick="searchGames()">Search</button>
 
+    <div class="sort-container">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" onchange="sortGames()">
+            <option value="newest">Newest Date</option>
+            <option value="oldest">Oldest Date</option>
+            <option value="answerer">Answerer</option>
+            <option value="questioner">Questioner</option>
+            <option value="winner">Winner</option>
+            <option value="loser">Loser</option>
+        </select>
+    </div>
+    
     <div class="table-container">
         <table class="game-table">
             <thead>
@@ -63,6 +75,69 @@ function jumpToPage() {
     if (!isNaN(page) && page >= 1 && page <= {{ games.pages }}) {
             window.location.href = "{{ url_for('app.history') }}?page=" + page;
     }
+}
+
+// function of searching and filtering table rows
+function searchGames() {
+    var input = document.querySelector('.history-input');
+    var filter = input.value.toLowerCase();
+    var rows = document.querySelectorAll('.game-row');
+
+    rows.forEach(function(row) {
+        var role = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        var result = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        var date = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+
+        if (role.includes(filter) || result.includes(filter) || date.includes(filter)) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+// function of sorting table rows
+function sortGames() {
+    var sortSelect = document.getElementById('sort-select');
+    var sortType = sortSelect.value;
+    
+    var rows = document.querySelectorAll('.game-row');
+    var sortedRows = Array.from(rows);
+
+    sortedRows.sort(function(a, b) {
+        var valueA, valueB;
+
+        if (sortType === 'newest') {
+            valueA = new Date(a.querySelector('td:nth-child(4)').textContent);
+            valueB = new Date(b.querySelector('td:nth-child(4)').textContent);
+            return valueB - valueA;
+        } else if (sortType === 'oldest') {
+            valueA = new Date(a.querySelector('td:nth-child(4)').textContent);
+            valueB = new Date(b.querySelector('td:nth-child(4)').textContent);
+            return valueA - valueB;
+        } else if (sortType === 'answerer') {
+            valueA = a.querySelector('td:nth-child(2)').textContent;
+            valueB = b.querySelector('td:nth-child(2)').textContent;
+            return valueA.localeCompare(valueB);
+        } else if (sortType === 'questioner') {
+            valueA = a.querySelector('td:nth-child(2)').textContent;
+            valueB = b.querySelector('td:nth-child(2)').textContent;
+            return valueB.localeCompare(valueA);
+        } else if (sortType === 'winner') {
+            valueA = a.querySelector('td:nth-child(3)').textContent;
+            valueB = b.querySelector('td:nth-child(3)').textContent;
+            return valueB.localeCompare(valueA);
+        } else if (sortType === 'loser') {
+            valueA = a.querySelector('td:nth-child(3)').textContent;
+            valueB = b.querySelector('td:nth-child(3)').textContent;
+            return valueA.localeCompare(valueB);
+        }
+    });
+
+    var tbody = document.querySelector('.game-table tbody');
+    sortedRows.forEach(function(row) {
+        tbody.appendChild(row);
+    });
 }
 </script>
 {% endblock %}
