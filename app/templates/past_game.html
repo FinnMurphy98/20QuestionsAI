@@ -2,17 +2,25 @@
 
 {% block content %}
 <div class="card">
-    <h1>Role: {{ game.role }}</h1>
+    <h1>As the {{ game.role }},</h1>
     {% if game.winner %}
-    <h1>Outcome: Winner!</h1>
+    <h1>You won the game!</h1>
     {% else %}
-    <h1>Outcome: Loser ;&#40</h1>
+    <h1>You lost the game&#40</h1>
     {% endif %}
-    <h2>Chat history</h2>
-    <div id="chat-box">
-        <div id="chat-history">
-            <!-- display chat history here -->
+    <div class="chat-box">
+        {% for message in messages %}
+        <div class="message">
+            <p class="game-role">{{ message.role }}</p>
+            <p class="message-content">{{ message.content }}</p>
         </div>
+        {% endfor %}
     </div>
+    
+    
 </div>
+
+
+
+
 {% endblock %}

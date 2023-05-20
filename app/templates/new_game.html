@@ -3,8 +3,8 @@
 {% block content %}
 <div class="card">
     <h1>New game as the {{ role }}!</h1>
-    <div id="chat-box">
-        <div id="chat-history">
+    <div id="chat-box" class="chat-box">
+        <div id="chat-history" class="chat-history">
             <!-- display chat history here -->
            
             <div class="message">
@@ -86,9 +86,9 @@
         chatHistory.appendChild(messageDiv);
 
         
-    var chatHistoryContainer = document.getElementById('chat-box');
-    chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
-
-    }
+        var chatHistoryContainer = document.getElementById('chat-box');
+        chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;   
+        }
+        
 </script>
 {% endblock %}
