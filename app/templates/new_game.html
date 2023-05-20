@@ -4,7 +4,7 @@
 <div class="card">
     <h1>New game as the {{ role }}!</h1>
     <div id="chat-box">
-        <div id="chat-history", style="max-width: 400px;">
+        <div id="chat-history">
             <!-- display chat history here -->
            
             <div class="message">
@@ -84,6 +84,11 @@
         messageDiv.appendChild(userMessageDiv);
 
         chatHistory.appendChild(messageDiv);
+
+        
+    var chatHistoryContainer = document.getElementById('chat-box');
+    chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;
+
     }
 </script>
 {% endblock %}
