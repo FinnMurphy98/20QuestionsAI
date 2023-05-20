@@ -35,4 +35,4 @@ QUESTIONER_PROMPT = "Let's play a game of 20 questions. You can be the answerer,
     think of a person, place or thing. I'll be the questioner, which means I have to ask you questions to \
     which you can only respond yes or no. I have to guess correctly in 20 questions or less. Are you ready?"
 
-from app import routes, models
+from app import routes, models, events

@@ -9,6 +9,7 @@ def connect():
     print('Client connected')
 
 @socketio.on('message', namespace='/game/Answerer')
+@socketio.on('message', namespace='/game/Questioner')
 def message(data):
     """
     Handler function for message events. 

@@ -3,7 +3,7 @@
 ![Tests](https://github.com/FinnMurphy98/20questionsAI/actions/workflows/tests.yml/badge.svg)
 
 ---
-# Developer Manual
+# Documentation
 
 ## Virtual Environment Setup & Installations
 
@@ -52,41 +52,55 @@
 2. To see the test coverage as well, run: `python -m pytest --cov=app -p no:warnings`
 
 ---
-# User Manual
+## Front-end Website Layout
 
-## Website Layout
+### Navigation Bar (not logged in)
+- Link to index page (20questionsAI)
+- Link to login page
 
-### Index/Home Page (http://127.0.0.1:5000/)
-- Welcome message
-- Short description about website
-- Option to create an account
-- Option to login
+### Navigation Bar (logged in)
+- Link to index page (20questionsAI)
+- Link to home page
+- Link to play new game
+- Link to history page
+- Username in top right corner (hover brings up logout link)
 
-### Login Page (http://127.0.0.1:5000/login)
-- login fields and submit button
+### Index Page
+- Description about the website
+- Login link in the navigation bar
 
-### Create account Page (http://127.0.0.1:5000/sign_up)
-- sign up fields and submit button
+### Login Page
+- Login form: username, password and remember me fields
+- Link to register if you don't have an account
+- Successful login redirects to users home page, or wherever the user was trying to navigate to before login
+- Unsuccessful login redirects back to login page with flashed messages
 
-### Logged-in/User Home Page (http://127.0.0.1:5000/username)
-- button to return to current game page (if they left a new game before it finished)
-- button to play a new game as questioner (if no current game)
-- button to play new game as answerer (if no current game)
-- display some the users stats (such as win rate)
-- option to logout (returns to index page)
-- button to navigate to history page
+### Register Page
+- Registraion form: username, email, password and repeat password fields
+- Successful registration redirects user to login page
+- Unsuccessful registration redirects back to registration fields with flashed messages
 
-### New Game Page (http://127.0.0.1:5000/username/game/gameID)
-- can scroll through all sent messages in the game
-- labels for who is the questioner and who is the answerer
-- a chat bar for entering text
-- a counter that shows what question number the questioner is on
-- a buttons that the user can press to finish the game: "ChatGPT wins" or "You win" or "cancelled"
-- option to go back to users home page
-- option to go to history page
-- option to log out (returns to index page)
+### Home Page
+- Displays username
+- Displays users statistics:
+- Total number of games played, number played as answerer, number played as questioner
+- Total number of wins, number of wins as answerer, number of wins as questioner
+- Total win rate, win rate as answerer, win rate as questioner
 
-### History page (http://127.0.0.1:5000/username/history)
+### Choose Role Page
+- When user selects new game from navigation bar, they taken to this page first to choose a role
+- Button to select answerer or button to select Questioner
+- After selecting role, user is taken to new game page
+
+### New Game Page
+- Chat box to talk with ChatGPT in a game of 20 questions
+- First two messages are automatically generated
+- First message is the initial prompt to get ChatGPT to play. It changes depending on the chosen role.
+- Second message is the first reply from ChatGPT. 
+- All messages after that are from live chat between user and ChatGPT. 
+- Form to submit the game once the user thinks its over: tick if you won field
+
+### History page
 - all games they've played and the summary results displayed starting from most recent
 - can click on a past game to bring up the messages that were displayed
 - can search past games by keywords
