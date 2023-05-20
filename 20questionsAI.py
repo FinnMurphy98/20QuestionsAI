@@ -1,9 +1,8 @@
 from app import create_app, db, socketio
-from config import DevConfig
 from app.models import User, Game, Message
 import openai
 
-app = create_app(config_class=DevConfig)
+app = create_app()
 openai.api_key = app.config.get('OPENAI_KEY')
 
 if __name__ == '__main__':

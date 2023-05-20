@@ -10,9 +10,6 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     OPENAI_KEY = os.environ.get('OPENAI_KEY')
 
-class DevConfig(Config):
-    FLASK_DEBUG = True
-
 class TestConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite://'

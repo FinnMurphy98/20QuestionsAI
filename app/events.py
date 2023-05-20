@@ -5,11 +5,11 @@ from datetime import datetime
 from app.openai.chat import chatgpt_response
 
 @socketio.on('connect', namespace='/game/Answerer')
-def handle_connect():
+def connect():
     print('Client connected')
 
 @socketio.on('message', namespace='/game/Answerer')
-def handle_message(data):
+def message(data):
     """
     Handler function for message events. 
     First it gets the message that was sent by the client, and adds it to the list of session messages. 
@@ -23,4 +23,4 @@ def handle_message(data):
         history.append({'role': message['role'], 'content': message['content']})
     reply = chatgpt_response(history)
     session['messages'].append({"timestamp": datetime.utcnow(), "role": "assistant", "content": reply})
-    emit('message', {'message': reply}, broadcast=True)
+    emit('message', {'message': reply})
