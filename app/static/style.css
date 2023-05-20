@@ -460,7 +460,6 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 
 /* new_game.html */
-
 .send {
     margin-left: 5px;
     background-color: transparent;
@@ -486,39 +485,71 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .message {
-    word-wrap: break-word;
-}
-
-.user-message {
-    color: #3e3e3ef5;
-    width:fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    align-self: flex-end;
-    background-color: #dcf8c6d5;
-}
-
-.gpt-message {
-    color: #3e3e3ef5;
-    width:fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    align-self: flex-start;
-    background-color: #723bad21;
+    display: flex;
+    flex-direction: column;
 }
 
 .game-user {
     color: #3e3e3ef5;
     font-weight: bold;
     text-align: end;
+    margin-bottom: 0;
 }
+
 .game-gpt {
     color: #3e3e3ef5;
     font-weight: bold;
-
+    margin-bottom: 0;
 }
 
+#initial-user-message {
+    color: #3e3e3ef5;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end;
+    background-color: #dcf8c6d5;
+}
 
+#initial-gpt-message {
+    color: #3e3e3ef5;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-start;
+    background-color: #723bad21;
+}
+
+.user-message {
+    align-self: flex-end;
+    position: relative;
+    color: #3e3e3ef5;
+}
+
+.user-message p {
+    text-align: left;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dcf8c6d5;
+}
+
+.game-role {
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
+.gpt-message {
+    position: relative;
+    color: #3e3e3ef5;
+}
+
+.gpt-message p {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #723bad21;
+}
 
 #chat-input input {
     margin-top: 20px;
