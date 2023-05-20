@@ -40,19 +40,16 @@
     });
 
     socket.on('message', function(data) {
-        var role = data.role;
-        var content = data.content;
-        var reply = data.reply;
-        addMessageToChatBox(role, content, reply);
+        var content = data.message;
+        addMessageToChatBox('ChatGPT', content, null);
     });
-
 
     function sendMessage() {
         var messageInput = document.getElementById('message-input');
         var message = messageInput.value;
-
+    
         addMessageToChatBox('user', message, null);
-
+    
         socket.emit('message', { message: message });
         
         messageInput.value = '';
@@ -62,38 +59,39 @@
         var chatHistory = document.getElementById('chat-history');
         var messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        
+
         var userMessage = document.createElement('p');
         userMessage.classList.add('user-message');
         userMessage.textContent = content;
-        
+
         var gameUser = document.createElement('p');
         gameUser.classList.add('game-user');
-        gameUser.textContent = '{{ current_user.username }}';
-        
+        gameUser.textContent = role;
+
         messageDiv.appendChild(gameUser);
         messageDiv.appendChild(userMessage);
-        
+
         if (reply) {
             var replyDiv = document.createElement('div');
             replyDiv.classList.add('message');
-            
+
             var gptMessage = document.createElement('p');
             gptMessage.classList.add('gpt-message');
             gptMessage.textContent = reply;
-            
+
             var gameGPT = document.createElement('p');
             gameGPT.classList.add('game-gpt');
             gameGPT.textContent = 'ChatGPT';
-            
+
             replyDiv.appendChild(gameGPT);
             replyDiv.appendChild(gptMessage);
-            
+
             messageDiv.appendChild(replyDiv);
         }
-        
+
         chatHistory.appendChild(messageDiv);
     }
+    
     
     
 
