@@ -17,7 +17,7 @@
             </div>
         </div> 
         <div id="chat-input">
-            <input type="text" id="message-input" placeholder="Type your message here...">
+            <input type="text" id="message-input" placeholder="Type your message here..." onkeydown="handleKeyDown(event)">
             <button class="send" onclick="sendMessage()">Send</button>
         </div>
     </div>
@@ -33,49 +33,57 @@
 <script>
 
     var socket = io.connect('http://127.0.0.1:5000/game/' + '{{ role }}');
-var currentUsername = '{{ current_user.username }}';
+    var currentUsername = '{{ current_user.username }}';
 
-socket.on('connect', function() {
-    console.log('Connected to server');
-});
+    socket.on('connect', function() {
+        console.log('Connected to server');
+    });
 
-socket.on('message', function(data) {
-    var content = data.message;
-    addMessageToChatBox('ChatGPT', content, null);
-});
+    socket.on('message', function(data) {
+        var content = data.message;
+        addMessageToChatBox('ChatGPT', content, null);
+    });
 
-function sendMessage() {
-    var messageInput = document.getElementById('message-input');
-    var message = messageInput.value;
+    function handleKeyDown(event) {
+        if (event.keyCode === 13) { 
+            event.preventDefault(); 
+            sendMessage();
+        }
+    }
+    
 
-    addMessageToChatBox('user', message, null);
+    function sendMessage() {
+        var messageInput = document.getElementById('message-input');
+        var message = messageInput.value;
 
-    socket.emit('message', { message: message });
+        addMessageToChatBox('user', message, null);
 
-    messageInput.value = '';
-}
+        socket.emit('message', { message: message });
 
-function addMessageToChatBox(role, content, reply) {
-    var chatHistory = document.getElementById('chat-history');
-    var messageDiv = document.createElement('div');
-    messageDiv.classList.add('message');
+        messageInput.value = '';
+    }
 
-    var userMessageDiv = document.createElement('div');
-    userMessageDiv.classList.add((role === 'user') ? 'user-message' : 'gpt-message');
+    function addMessageToChatBox(role, content, reply) {
+        var chatHistory = document.getElementById('chat-history');
+        var messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
 
-    var userMessageRole = document.createElement('span');
-    userMessageRole.classList.add('game-role');
-    userMessageRole.textContent = (role === 'user') ? currentUsername : 'ChatGPT';
+        var userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add((role === 'user') ? 'user-message' : 'gpt-message');
 
-    var userMessageContent = document.createElement('p');
-    userMessageContent.classList.add('message-content');
-    userMessageContent.textContent = content;
+        var userMessageRole = document.createElement('span');
+        userMessageRole.classList.add('game-role');
+        userMessageRole.textContent = (role === 'user') ? currentUsername : 'ChatGPT';
 
-    userMessageDiv.appendChild(userMessageRole);
-    userMessageDiv.appendChild(userMessageContent);
-    messageDiv.appendChild(userMessageDiv);
+        var userMessageContent = document.createElement('p');
+        userMessageContent.classList.add('message-content');
+        userMessageContent.textContent = content;
 
-    chatHistory.appendChild(messageDiv);
-}
+        userMessageDiv.appendChild(userMessageRole);
+        userMessageDiv.appendChild(userMessageContent);
+        messageDiv.appendChild(userMessageDiv);
+
+        chatHistory.appendChild(messageDiv);
+    }
 </script>
 {% endblock %}
