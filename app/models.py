@@ -73,10 +73,11 @@ class Game(db.Model):
     winner is True or False.
     """
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     role = db.Column(db.String(64), nullable=False)
-    winner = db.Column(db.Boolean, nullable=False)
+    winner = db.Column(db.Boolean)
+    finished = db.Column(db.Boolean)
     messages = db.relationship('Message', backref='game', lazy='dynamic')
     __tablename__ = 'Game'
 

@@ -79,6 +79,7 @@ def home(username):
     return render_template('home.html', user=user, stats=stats)
 
 @bp.route('/choose_role', methods=['GET', 'POST'])
+@login_required
 def role():
     """
     Route handler for the role page. 
@@ -97,25 +98,30 @@ def new_game(role):
     Upon valid form submit: every message in the session messages is committed to the database. 
     If the role is not 'Questioner' or 'Answerer', return 404 Not Found response.
     """
-    prompt = ''
-    if role == 'Answerer':
-        prompt += ANSWERER_PROMPT
-    elif role == 'Questioner':
-        prompt += QUESTIONER_PROMPT
-    else:
-        return Response(status=404)
-    session['messages'] = [{"timestamp": datetime.utcnow(), "role": "user", "content": prompt}]
-    messages = [{"role": "user", "content": prompt}]
-    reply = chatgpt_response(messages)
-    session['messages'].append({"timestamp": datetime.utcnow(), "role": "assistant", "content": reply})
-    form = FinishGameForm()
-    if form.validate_on_submit():
-        game = Game(user_id=current_user.id, role=role, winner=form.winner.data)
+    if request.method == 'GET':
+        game = Game(user_id=current_user.id, role=role, finished=False)
         db.session.add(game)
         db.session.commit()
-        for msg in session['messages']:
-            message = Message(timestamp=msg['timestamp'], game_id=game.id, role=msg['role'], content=msg['content'])
-            db.session.add(message)
+        session['game_id'] = game.id
+        prompt = ''
+        if role == 'Answerer':
+            prompt += ANSWERER_PROMPT
+        elif role == 'Questioner':
+            prompt += QUESTIONER_PROMPT
+        else:
+            return Response(status=404)
+        message = Message(timestamp=datetime.now(), game_id=session['game_id'], role='user', content=prompt)
+        db.session.add(message)
+        db.session.commit()
+        messages = [{"role": "user", "content": prompt}]
+        reply = chatgpt_response(messages)
+        message = Message(timestamp=datetime.now(), game_id=session['game_id'], role='assistant', content=reply)
+        db.session.add(message)
+        db.session.commit()
+    form = FinishGameForm()
+    if form.validate_on_submit():
+        Game.query.filter_by(id=session['game_id']).update({'finished': True})
+        Game.query.filter_by(id=session['game_id']).update({'winner': form.winner.data})
         db.session.commit()
         return redirect(url_for('app.history'))
     return render_template('new_game.html', role=role, form=form, prompt=prompt, reply=reply)
@@ -133,13 +139,13 @@ def history(**kwargs):
     page = request.args.get('page', 1, type=int)
     per_page = 15
     filters = list(kwargs.values())
-    games = current_user.games.order_by(Game.timestamp.desc())
+    games = current_user.games.filter_by(finished=True).order_by(Game.timestamp.desc())
     if ('Answerer' in filters and 'Questioner' in filters) or ('Winner' in filters and 'Loser' in filters):
         return Response(status=404)
     if 'Answerer' in filters:
-        games = current_user.games.filter_by(role='Answerer').order_by(Game.timestamp.desc())
+        games = current_user.games.filter_by(role='Answerer', finished=True).order_by(Game.timestamp.desc())
     if 'Questioner' in filters:
-        games = current_user.games.filter_by(role='Questioner').order_by(Game.timestamp.desc())
+        games = current_user.games.filter_by(role='Questioner', finished=True).order_by(Game.timestamp.desc())
     if 'Winner' in filters:
         games = games.filter_by(winner=True).order_by(Game.timestamp.desc())
     if 'Loser' in filters:

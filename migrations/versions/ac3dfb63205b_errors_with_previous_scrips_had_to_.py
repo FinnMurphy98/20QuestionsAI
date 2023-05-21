@@ -1,8 +1,8 @@
-"""empty message
+"""errors with previous scrips, had to start fresh
 
-Revision ID: 020dda3addee
-Revises: 4957c18069f5
-Create Date: 2023-05-15 23:01:56.980306
+Revision ID: ac3dfb63205b
+Revises: 
+Create Date: 2023-05-21 10:29:32.175800
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '020dda3addee'
-down_revision = '4957c18069f5'
+revision = 'ac3dfb63205b'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -32,9 +32,10 @@ def upgrade():
     op.create_table('Game',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('role', sa.String(length=64), nullable=False),
-    sa.Column('winner', sa.Boolean(), nullable=False),
+    sa.Column('winner', sa.Boolean(), nullable=True),
+    sa.Column('finished', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -46,7 +47,7 @@ def upgrade():
     sa.Column('timestamp', sa.DateTime(), nullable=False),
     sa.Column('game_id', sa.Integer(), nullable=False),
     sa.Column('role', sa.String(length=64), nullable=False),
-    sa.Column('content', sa.String(), nullable=True),
+    sa.Column('content', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['game_id'], ['Game.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
