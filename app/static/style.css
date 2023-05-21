@@ -263,7 +263,8 @@ and add the fade in animation for description.
 set styles for:
 welcome text,
 title of role selection,
-two a labels of role selection.
+two a labels of role selection,
+stats table.
 */
 .home-title {
     display: block;
@@ -287,8 +288,51 @@ two a labels of role selection.
 .home-title h2,
 .home-title a {
     margin: 50px 30px;
+    font-weight: bold;
 }
 
+.stats {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stats h3 {
+    align-self: center;
+}
+
+.stats-table {
+    max-width: 400px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.stats-table tr {
+    display:inline-block;
+    padding: 1px;
+    background-color: #ffffffe0;
+    border: solid 2px #d8d7d7;
+    border-radius: 10px;
+    margin:3px;
+}
+
+.stats-highlight {
+    color: #e89126da;
+    font-size: 30px;
+    margin: 5px; 
+}
+
+.stat-label {
+    font-weight: bold;
+    padding: 3px;
+}
+  
+.stat-value {
+    padding: 3px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e89126da;
+}
 
 /* login.html register.html
 set styles for:
@@ -388,6 +432,7 @@ two a labels.
     color: #3e3e3ef5;
     border: solid 2px #d8d7d7;
     border-radius: 20px;
+    font-weight: bold;
 }
 
 .role:hover {

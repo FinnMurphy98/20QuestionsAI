@@ -9,5 +9,51 @@
         <a class="role" href="{{ url_for('app.new_game', role='Answerer') }}">Answerer</a>
         <a class="role" href="{{ url_for('app.new_game', role='Questioner') }}">Questioner</a>
     </div>
+    <!-- Display user stats as table-->
+    <div class="stats">
+        <h3>Stats about <span class="stats-highlight">{{ user.username }}</span>:</h3>
+        <table class="stats-table">
+            <tr>
+                <td class="stat-label">Wins:</td>
+                <td class="stat-value">{{ stats.total_wins }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Losses:</td>
+                <td class="stat-value">{{ stats.total_games - stats.total_wins }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Games Played:</td>
+                <td class="stat-value">{{ stats.total_games }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Win Rate:</td>
+                <td class="stat-value">{{ stats.win_rate }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Answer Games:</td>
+                <td class="stat-value">{{ stats.answer_games }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Answer Wins:</td>
+                <td class="stat-value">{{ stats.answer_wins }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Answer Win Rate:</td>
+                <td class="stat-value">{{ stats.answer_win_rate }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Question Games:</td>
+                <td class="stat-value">{{ stats.question_games }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Question Wins:</td>
+                <td class="stat-value">{{ stats.question_wins }}</td>
+            </tr>
+            <tr>
+                <td class="stat-label">Question Win Rate:</td>
+                <td class="stat-value">{{ stats.question_win_rate }}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 {% endblock %}
