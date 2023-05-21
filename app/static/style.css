@@ -1,4 +1,16 @@
-/* base.html */
+/* base.html 
+set styles for:
+background image styles for all pages, 
+the navbar,
+navbar buttons, 
+dropdown button & dropdown content,
+icon for navbar buttons,
+icon for the label page.
+----------
+flash message & close button after successful registration.
+----------
+Created a card style with title for all pages to display the contents.
+*/
 .background-img {
     background-image: url('/static/background-img.jpg');
     background-size: cover;
@@ -92,6 +104,7 @@
     width: 90px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left: -20px;
 }
 
 .dropdown-content a {
@@ -174,33 +187,31 @@ hr {
     cursor: pointer;
 }
 
+.card {
+    background-color: #f1f0f0f7;
+    color: #3e3e3ef5;
+    width: max-content;   
+    margin: 150px auto;
+    border: 1px solid #cccccc71;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #4b4b4b49;
+    padding: 50px;
+}
 
-/* home.html */
-.home-title {
-    display: block;
-    justify-content: center;
-    align-items: center;
+.card h1 {
     text-align: center;
-    padding: 30px;
-    color: #292828be;
-} 
-
-.home-title h1 {
-    display: inline;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 5px;
 }
 
-.home-title p {
-    color: #e89126da;
-    display: inline;
-    margin: 5px;
-}
-
-.home-title h2,
-.home-title a {
-    margin: 50px 30px;
-}
-
-/* index.html */
+/* index.html 
+set styles for:
+title, 
+description.
+and add the fade in animation for description.
+*/
 .index-title {
     display: flex;
     justify-content: center;
@@ -248,26 +259,45 @@ hr {
     }
 }
 
-/* login.html register.html*/
-.card {
-    background-color: #f1f0f0f7;
-    color: #3e3e3ef5;
-    width: max-content;   
-    margin: 150px auto;
-    border: 1px solid #cccccc71;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #4b4b4b49;
-    padding: 50px;
-}
-
-.card h1 {
+/* home.html 
+set styles for:
+welcome text,
+title of role selection,
+two a labels of role selection.
+*/
+.home-title {
+    display: block;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    font-weight: bolder;
-    font-size: 30px;
-    margin-bottom: 30px;
-    margin-top: 5px;
+    padding: 30px;
+    color: #292828be;
+} 
+
+.home-title h1 {
+    display: inline;
 }
 
+.home-title p {
+    color: #e89126da;
+    display: inline;
+    margin: 5px;
+}
+
+.home-title h2,
+.home-title a {
+    margin: 50px 30px;
+}
+
+
+/* login.html register.html
+set styles for:
+title,
+input boxes,
+submit buttons,
+a hyperlink for jumping to the register page,  
+error message when user input invalid username or password.
+*/
 input[type="text"], input[type="password"] {
     border: none;
     border-bottom: 2px solid #bcbbbbd0;
@@ -301,7 +331,6 @@ input[type="text"]:focus, input[type="password"]:focus {
     color: #723bad;
 }
 
-/* styles for error message */
 .modal {
     left: 0;
     top: 0;
@@ -341,7 +370,12 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 
-/* role.html */
+/* role.html 
+set styles for:
+welcome message,
+role selection title,
+two a labels.
+*/
 .roles {
     margin-top: 50px;
     text-align: center;
@@ -360,7 +394,151 @@ input[type="text"]:focus, input[type="password"]:focus {
     background-color: #3e3e3e1e;
 }
 
-/* history.html */
+/* new_game.html 
+set styles for:
+send button,
+chat box,
+role names,
+messages,
+questions counter,
+finish button.
+*/
+.send {
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3e3e3ef5;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.send:hover {
+    background-color: #3e3e3e1e;
+}
+
+.chat-box {
+    border:solid 2px #3e3e3ef5;
+    background-color: #ffffffe4;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    max-width: 600px;
+    overflow-y: auto; 
+    margin-bottom: 30px;
+}
+
+
+.chat-history {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-user {
+    color: #3e3e3ef5;
+    font-weight: bold;
+    text-align: end;
+    margin-bottom: 0;
+}
+
+.game-gpt {
+    color: #3e3e3ef5;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+#initial-user-message {
+    color: #3e3e3ef5;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end;
+    background-color: #dcf8c6d5;
+}
+
+#initial-gpt-message {
+    color: #3e3e3ef5;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-start;
+    background-color: #723bad21;
+}
+
+.user-message {
+    align-self: flex-end;
+    position: relative;
+    color: #3e3e3ef5;
+}
+
+.user-message p {
+    text-align: left;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dcf8c6d5;
+}
+
+.game-role {
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
+.gpt-message {
+    position: relative;
+    color: #3e3e3ef5;
+}
+
+.gpt-message p {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #723bad21;
+}
+
+#chat-input {
+    margin-bottom: 45px;
+}
+
+#chat-input input {
+    margin-top: 20px;
+    width: 300px;
+}
+
+.finish {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.finish input[type="submit"] {
+    background-color: transparent;
+    border: 2px solid #d8d7d7;
+    color: #3e3e3ef5;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.finish input[type="submit"]:hover {
+    background-color: #3e3e3e1e;
+}
+
+
+/* history.html
+set styles for:
+search button,
+input box,
+filter,
+dropdown selection for sorting,
+table of game records,
+previous & next buttons,
+input box and button for jumping page.
+*/
 .search {
     margin-left: 5px;
     background-color: transparent;
@@ -493,134 +671,11 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 
-
-/* new_game.html */
-.send {
-    margin-left: 5px;
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3e3e3ef5;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-.send:hover {
-    background-color: #3e3e3e1e;
-}
-
-.chat-box {
-    border:solid 2px #3e3e3ef5;
-    background-color: #ffffffe4;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    max-width: 600px;
-    overflow-y: auto; 
-    margin-bottom: 30px;
-}
-
-
-.chat-history {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-}
-
-.message {
-    display: flex;
-    flex-direction: column;
-}
-
-.game-user {
-    color: #3e3e3ef5;
-    font-weight: bold;
-    text-align: end;
-    margin-bottom: 0;
-}
-
-.game-gpt {
-    color: #3e3e3ef5;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-#initial-user-message {
-    color: #3e3e3ef5;
-    width: fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    align-self: flex-end;
-    background-color: #dcf8c6d5;
-}
-
-#initial-gpt-message {
-    color: #3e3e3ef5;
-    width: fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    align-self: flex-start;
-    background-color: #723bad21;
-}
-
-.user-message {
-    align-self: flex-end;
-    position: relative;
-    color: #3e3e3ef5;
-}
-
-.user-message p {
-    text-align: left;
-    width: fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #dcf8c6d5;
-}
-
-.game-role {
-    margin-bottom: 5px; 
-    font-weight: bold;
-}
-
-.gpt-message {
-    position: relative;
-    color: #3e3e3ef5;
-}
-
-.gpt-message p {
-    width: fit-content;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #723bad21;
-}
-
-#chat-input {
-    margin-bottom: 45px;
-}
-
-#chat-input input {
-    margin-top: 20px;
-    width: 300px;
-}
-
-.finish {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.finish input[type="submit"] {
-    background-color: transparent;
-    border: 2px solid #d8d7d7;
-    color: #3e3e3ef5;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-
-.finish input[type="submit"]:hover {
-    background-color: #3e3e3e1e;
-}
-
-/* past_game.html */
+/* past_game.html 
+set styles for:
+message of game record,
+chat records.
+*/
 .past-role, 
 .past-result {
     color: #723bad;
@@ -658,7 +713,11 @@ input[type="text"]:focus, input[type="password"]:focus {
     background-color: #723bad21;
 }
 
-/* suit to mobile screen */
+/* suit to mobile screen 
+on small size screens, 
+many elements are displayed too large, 
+so some adjustments have been made to these elements.
+*/
 @media screen and (max-width: 600px) {
     .navbar {
         flex-direction: column;

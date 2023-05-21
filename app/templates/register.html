@@ -5,6 +5,7 @@
     <h1>Register</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        <!-- username input box -->
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
@@ -12,6 +13,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+         <!-- email input box -->
         <p>
             {{ form.email.label }}<br>
             {{ form.email(size=32) }}<br>
@@ -19,6 +21,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+         <!-- password input box -->
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
@@ -33,6 +36,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+         <!-- submit button -->
         <p class="submit-button">{{ form.submit() }}</p>
     </form>
 </div>

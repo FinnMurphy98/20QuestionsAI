@@ -3,10 +3,11 @@
 {% block content %}
 <div class="card">
     <h1>New game as the {{ role }}!</h1>
+    <!-- chat box -->
     <div id="chat-box" class="chat-box">
-        <div id="chat-history" class="chat-history">
-            <!-- display chat history here -->
-           
+        <!-- chat history -->  
+        <div id="chat-history" class="chat-history"> 
+            <!-- initial message -->         
             <div class="message">
                 <p class="game-user">{{ current_user.username }}</p> 
                 <p id="initial-user-message" class="user-message">{{ prompt }}</p>
@@ -15,28 +16,45 @@
                 <p class="game-gpt">ChatGPT</p> 
                 <p id="initial-gpt-message" class="gpt-message">{{ reply }}</p>
             </div>
-        </div> 
+        </div>
+
+        <!-- input box of chat box -->   
         <div id="chat-input">
             <input type="text" id="message-input" placeholder="Type your message here..." onkeydown="handleKeyDown(event)">
             <button class="send" onclick="sendMessage()">Send</button>
         </div>
+
     </div>
+
+    <!-- the question counter -->  
     <div id="question-count" class="question-count">Questions Counter: 0</div>
+
+    <!-- a checkbox for judging game -->  
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>{{ form.winner() }} {{ form.winner.label }}</p>
+        <!-- submit button for submitting game -->
         <div class="finish"><p >{{ form.submit() }}</p></div>
     </form>
 </div>
 
-
+<!--
+    Since some Java Scripts corresponding to the functions of this page 
+    seem to work only when they are placed on this page, 
+    the Java Scripts related to this page will be placed in the <script> label.
+-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.min.js"></script>
 <script>
-
+    // connect to socket server
     var socket = io.connect('http://127.0.0.1:5000/game/' + '{{ role }}');
     var currentUsername = '{{ current_user.username }}';
 
-    var questionCount = 0; // Initialize the counter of questions to 0
+    socket.on('connect', function() {
+        console.log('Connected to server');
+    });
+
+    // initialize the counter of questions to 0
+    var questionCount = 0; 
 
     function incrementQuestionCount() {
         questionCount += 1; // the count of questions plus 1
@@ -44,16 +62,15 @@
         questionCountElement.textContent = 'The count of questions: ' + questionCount; // Update the counter of questions
     }
 
-    socket.on('connect', function() {
-        console.log('Connected to server');
-    });
-
     socket.on('message', function(data) {
         var content = data.message;
         addMessageToChatBox('ChatGPT', content, null);
-        incrementQuestionCount(); // When the role is Answerer, counter + 1
+        incrementQuestionCount(); // when the role is Answerer, counter + 1
     });
 
+    // function to prevent the default behavior 
+    // for pressing the Enter key, 
+    // then calls the sendMessage() function.
     function handleKeyDown(event) {
         if (event.keyCode === 13) { 
             event.preventDefault(); 
@@ -61,19 +78,20 @@
         }
     }
     
-
+    // function to send message to socket
     function sendMessage() {
         var messageInput = document.getElementById('message-input');
         var message = messageInput.value;
 
         addMessageToChatBox('user', message, null);
-        incrementQuestionCount(); // When the role is Questioner, counter + 1
+        incrementQuestionCount(); // when the role is Questioner, counter + 1
 
         socket.emit('message', { message: message });
 
         messageInput.value = '';
     }
 
+    // function to add chat messages to the chat box
     function addMessageToChatBox(role, content, reply) {
         var chatHistory = document.getElementById('chat-history');
         var messageDiv = document.createElement('div');
@@ -96,7 +114,7 @@
 
         chatHistory.appendChild(messageDiv);
 
-        
+        // scroll the scroll bar of the chat box back to the bottom
         var chatHistoryContainer = document.getElementById('chat-box');
         chatHistoryContainer.scrollTop = chatHistoryContainer.scrollHeight;   
         }

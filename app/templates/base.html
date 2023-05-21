@@ -5,16 +5,20 @@
         {% if title %}
         <title>{{ title }} | 20questionsAI</title>
         {% else %}
+        <!-- icon of label -->
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='title-icon.jpg') }}">
         <title>20questionsAI</title>
         {% endif %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--link to the CSS file -->
         <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
     </head>
     <body>
         <!-- navigation bar -->
         <div class="navbar">
+            <!-- navibar buttons -->
             <div class="left">
                 <a class="title" href="{{ url_for('app.index') }}">20questionsAI</a>
                 {% if current_user.is_anonymous %}
@@ -41,6 +45,7 @@
                    
                 {% endif %}
             </div>
+            <!-- navibar dropdown button -->
             <div class="right">
                 {% if not current_user.is_anonymous %}
                     <div class="dropdown">
@@ -52,8 +57,13 @@
                     </div>
                 {% endif %}
             </div>
+
         </div>
+
+        <!-- background image for all pages -->
         <div class="background-img">
+
+            <!-- obtain flashed mesaage when sign up successful-->
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="register-message">
@@ -64,10 +74,14 @@
             </div>
             {% endif %}
             {% endwith %}
+
+
             <hr>
             <!-- content for other pages -->
             {% block content %}{% endblock %}
         </div>
+
+        <!--import Java Script & JQuery -->
         <script src="{{ url_for('static', filename='style.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </body>

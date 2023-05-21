@@ -2,12 +2,15 @@
 
 {% block content %}
 <div class="card">
+    <!-- result of the seleted game record -->
     <h1>As the <span class="past-role"> {{ game.role }}</span>,</h1>
     {% if game.winner %}
     <h1>You <span class="past-result">won</span> the game!</h1>
     {% else %}
-    <h1>You lost the game&#40</h1>
+    <h1>You <span class="past-result">lost</span> the game&#40</h1>
     {% endif %}
+
+    <!-- chat history of selected game record -->
     <div class="chat-box">
         <h2> The History of Chat </h2> 
         {% for message in messages %}
@@ -21,13 +24,6 @@
             {% endif %}
         </div>
         {% endfor %}
-
     </div>
-    
-    
 </div>
-
-
-
-
 {% endblock %}

@@ -1,4 +1,5 @@
 // base.html
+// function to mark the button corresponding to the current page in the navigation bar as active
 const currentUrl = window.location.href;
 const links = document.querySelectorAll('.navbar a');
 links.forEach((link) => {
@@ -7,7 +8,7 @@ links.forEach((link) => {
     }
 });
 
-
+// function to toggle showing and hiding the dropdown menu
 function dropdown() {
     var dropdownMenu = document.getElementById("dropdown-menu");
     if (dropdownMenu.style.display === "block") {
@@ -17,6 +18,7 @@ function dropdown() {
     }
 }
 
+// function to close the success message after signing up
 const closeButton = document.querySelector('.close-message');
 const registerMessage = document.querySelector('.register-message');
 
@@ -25,20 +27,21 @@ closeButton.addEventListener('click', function() {
 });
 
 
-
+// login.html
+// function to close the error message when username or password is invalid
 var modal = document.getElementById("error-modal");
     var span = document.getElementsByClassName("close")[0];
-    
     if (modal) {
         modal.style.display = "block";
     }
-    
     if (span) {
         span.onclick = function() {
             modal.style.display = "none";
         }
     }
 
+// index.html
+// function to add fade-in effect for the description 
 document.addEventListener('DOMContentLoaded', function() {
     var descriptions = document.querySelectorAll('.index-description p');
     for (var i = 0; i < descriptions.length; i++) {

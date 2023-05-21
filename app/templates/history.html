@@ -3,10 +3,14 @@
 {% block content %}
 <div class="card">
     <h1>Previous games</h1>
+
+    <!-- search box-->
     <input class="history-input" type="text" placeholder="Search for previous games">
     <button class="search" onclick="searchGames()">Search</button>
 
+    <!-- filter & sort -->
     <div class="sort-filter-container">
+        <!-- filter -->
         <div class="filter-container">
             <label class="filter-by">Filter by:</label>
             <label for="answerer-checkbox">
@@ -26,9 +30,8 @@
                 Loser
             </label>
           </div>
-          
-          
-          
+                  
+        <!-- sort -->
         <div class="sort-container">
             <label for="sort-select">Sort by:</label>
             <select id="sort-select" onchange="sortGames()">
@@ -39,11 +42,10 @@
                 <option value="winner">Winner</option>
                 <option value="loser">Loser</option>
             </select>
-        </div>
-
-        
+        </div>        
     </div>
     
+    <!-- table of game records -->
     <div class="table-container">
         <table class="game-table">
             <thead>
@@ -69,6 +71,7 @@
         </table>
     </div>
 
+    <!-- pagination -->
     <div class="pagination">
         <button class="prev-btn" {% if games.has_prev %}onclick="changePage('prev')" {% else %}disabled {% endif %}>Previous</button>
         <span class="page-info">Page <span id="current-page">{{ games.page }}</span> of <span id="total-pages">{{ games.pages }}</span></span>
@@ -79,6 +82,12 @@
 </div>
 
 
+
+<!--
+    Since some Java Scripts corresponding to the functions of this page 
+    seem to work only when they are placed on this page, 
+    the Java Scripts related to this page will be placed in the <script> label.
+-->
 <script>
 // function of changing page
 function changePage(direction) {
@@ -219,7 +228,5 @@ function sortGames() {
     });
 }
 
-
-  
 </script>
 {% endblock %}

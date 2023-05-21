@@ -6,14 +6,17 @@
     <h1>Sign In</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
+        <!-- input box of username -->
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
         </p>
+        <!-- input box of password -->
         <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
         </p>
+        <!-- error message when user input invalid username or password -->
         {% if error_message %}
         <div id="error-modal" class="modal">
             <div class="modal-content">
@@ -22,8 +25,11 @@
             </div>
         </div>
         {% endif %}
+        
+        <!-- remember me & submit button -->
         <p class="remember-me">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p class="submit-button">{{ form.submit() }}</p>
+        <!-- a hyperlink to jump to the register page -->
         <p class="new-user">New User? <a href="{{ url_for('app.register') }}"> Click to Register!</a></p>
     </form>
 </div>
