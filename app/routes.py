@@ -53,7 +53,7 @@ def register():
     Logged-in users are redirected to index page.
     """
     if current_user.is_authenticated:
-        return redirect(url_for('app.index'))
+        return redirect(url_for('app.home', username=current_user.username))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
@@ -78,7 +78,7 @@ def home(username):
     stats = user.stats()
     return render_template('home.html', user=user, stats=stats)
 
-@bp.route('/choose_role', methods=['GET', 'POST'])
+@bp.route('/choose_role')
 @login_required
 def role():
     """

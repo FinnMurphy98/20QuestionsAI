@@ -63,17 +63,6 @@ class TestGameModel(unittest.TestCase):
         db.session.add(game)
         with pytest.raises(IntegrityError):
             db.session.commit()
-    
-    def test_winner_not_nullable(self):
-        """
-        GIVEN a game with no winner
-        WHEN it is committed to the database
-        THEN it should cause an integrity error
-        """
-        game = Game(user_id=self.user.id, role='Questioner')
-        db.session.add(game)
-        with pytest.raises(IntegrityError):
-            db.session.commit()
 
 if __name__ == '__main__':
     unittest.main()

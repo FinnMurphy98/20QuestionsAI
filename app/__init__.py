@@ -9,7 +9,7 @@ bp = Blueprint('app', __name__)
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
-login.login_view = 'login'
+login.login_view = 'app.login'
 socketio = SocketIO()
 
 def create_app(config_class=Config):
