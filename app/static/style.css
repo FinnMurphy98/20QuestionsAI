@@ -718,7 +718,7 @@ on small size screens,
 many elements are displayed too large, 
 so some adjustments have been made to these elements.
 */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -779,7 +779,10 @@ so some adjustments have been made to these elements.
     .home-title a,
     .role {
         display: block;
-        margin: 0;
+        margin: 5px;
     }
     
+    .index-description {
+        max-width: 600px;
+    }
 }
