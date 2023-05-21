@@ -138,6 +138,41 @@ hr {
 
 }
 
+.register-message {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    height: max-content;
+    color:#723bad;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+    border: solid 2px #d8d7d7;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    width: auto;
+}
+
+.close-message {
+    float: right;
+    font-size: 30px;
+    position: relative;
+    border: none;
+    background-color: transparent;
+    color: #3e3e3e8f;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.close-message:hover,
+.close-message:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 /* home.html */
@@ -479,7 +514,6 @@ input[type="text"]:focus, input[type="password"]:focus {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     height: 400px;
     max-width: 600px;
     overflow-y: auto; 
@@ -586,10 +620,46 @@ input[type="text"]:focus, input[type="password"]:focus {
     background-color: #3e3e3e1e;
 }
 
+/* past_game.html */
+.past-role, 
+.past-result {
+    color: #723bad;
+    font-size: 35px;
+}
 
-/* suit mobile screen */
+.chat-box h2 {
+    color: #29282890;
+    align-self: center;
+}
+
+.past-game-user {
+    align-self: flex-end;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.past-user-message {
+    align-self: flex-end;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #dcf8c6d5;
+}
+
+.past-game-gpt {
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.past-gpt-message {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #723bad21;
+}
+
+/* suit to mobile screen */
 @media screen and (max-width: 600px) {
-    /* home */
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -636,11 +706,21 @@ input[type="text"]:focus, input[type="password"]:focus {
         
     }
 
+    /* Adjust the background image 
+    so that it does not appear blank block on small size screens */
     .background-img {
         background-repeat: repeat;
-        background-size: contain;
+        background-size: cover;
         background-position: center;
-        height: max-content;
     }
 
+    /* On small size screens, 
+    the a labels for role selection on the home and role pages overlap, 
+    so display them as block elements. */
+    .home-title a,
+    .role {
+        display: block;
+        margin: 0;
+    }
+    
 }

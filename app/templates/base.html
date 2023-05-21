@@ -56,11 +56,12 @@
         <div class="background-img">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <ul>
+            <div class="register-message">
+                <span class="close-message">&times;</span>
                 {% for message in messages %}
-                <li>{{ message }}</li>
+                <p>{{ message }}</p>
                 {% endfor %}
-            </ul>
+            </div>
             {% endif %}
             {% endwith %}
             <hr>

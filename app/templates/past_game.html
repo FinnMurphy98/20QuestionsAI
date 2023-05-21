@@ -2,19 +2,26 @@
 
 {% block content %}
 <div class="card">
-    <h1>As the {{ game.role }},</h1>
+    <h1>As the <span class="past-role"> {{ game.role }}</span>,</h1>
     {% if game.winner %}
-    <h1>You won the game!</h1>
+    <h1>You <span class="past-result">won</span> the game!</h1>
     {% else %}
     <h1>You lost the game&#40</h1>
     {% endif %}
     <div class="chat-box">
+        <h2> The History of Chat </h2> 
         {% for message in messages %}
         <div class="message">
-            <p class="game-role">{{ message.role }}</p>
-            <p class="message-content">{{ message.content }}</p>
+            {% if message.role == 'user' %}
+                <p class="past-game-user">{{ current_user.username }}</p>
+                <p class="past-user-message">{{ message.content }}</p>
+            {% else %}
+                <p class="past-game-gpt">ChatGPT</p>
+                <p class="past-gpt-message">{{ message.content }}</p>
+            {% endif %}
         </div>
         {% endfor %}
+
     </div>
     
     

@@ -17,6 +17,15 @@ function dropdown() {
     }
 }
 
+const closeButton = document.querySelector('.close-message');
+const registerMessage = document.querySelector('.register-message');
+
+closeButton.addEventListener('click', function() {
+  registerMessage.style.display = 'none'; 
+});
+
+
+
 var modal = document.getElementById("error-modal");
     var span = document.getElementsByClassName("close")[0];
     
