@@ -18,6 +18,20 @@ function dropdown() {
     }
 }
 
+// register.html
+// function to close the success message after signing up
+window.onload = function() {
+    const closeButton = document.querySelector('.close-message');
+    const registerMessage = document.querySelector('.register-message');
+
+    if (closeButton && registerMessage) {
+        closeButton.addEventListener('click', function() {
+            registerMessage.style.display = 'none'; 
+        });
+    }
+};
+
+
 // login.html
 // function to close the error message when username or password is invalid
 var modal = document.getElementById("error-modal");
