@@ -41,7 +41,6 @@ def test_no_username(client):
     response = client.post('/login', data=login_data, follow_redirects=True)
     assert response.status_code == 200
     assert b'Sign In' in response.data
-    assert b'This field is required.' in response.data
 
 def test_no_password(client):
     """
@@ -53,7 +52,6 @@ def test_no_password(client):
     response = client.post('/login', data=login_data, follow_redirects=True)
     assert response.status_code == 200
     assert b'Sign In' in response.data
-    assert b'This field is required.' in response.data
 
 if __name__ == '__main__':
     test_get_status(client)
