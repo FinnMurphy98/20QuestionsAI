@@ -2,7 +2,7 @@ import pytest
 from app import create_app, db
 from config import TestConfig
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def app():
     app = create_app(TestConfig)
     app_context = app.app_context()

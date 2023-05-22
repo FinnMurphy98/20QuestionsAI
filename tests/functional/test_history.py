@@ -1,5 +1,8 @@
 from tests.conftest import client
 
+# TODO
+# other test methods involving logged in user
+
 def test_status_not_logged_in(client):
     """
     GIVEN a client who is not logged in

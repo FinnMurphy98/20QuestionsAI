@@ -3,6 +3,8 @@
 <html lang="en">
     <head>
         {% if title %}
+        <!-- icon of label -->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='title-icon.jpg') }}">
         <title>{{ title }} | 20questionsAI</title>
         {% else %}
         <!-- icon of label -->
