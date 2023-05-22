@@ -59,7 +59,7 @@
     function incrementQuestionCount() {
         questionCount += 1; // the count of questions plus 1
         var questionCountElement = document.getElementById('question-count');
-        questionCountElement.textContent = 'The count of questions: ' + questionCount; // Update the counter of questions
+        questionCountElement.textContent = 'Message counter: ' + questionCount; // Update the counter of questions
     }
 
     socket.on('message', function(data) {
