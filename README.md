@@ -8,7 +8,7 @@ close to the end of the project. But the old migrations folder is included in th
 
 # Overview of the Application
 
-The idea of the application is to facilitate 'loose' games of 20 Questions against ChatGPT. Loose meaning they are not tightly controlled by the application logic. ChatGPT is automatically prompted to play a game of 20 questions with you, but the prompt itself is open to change and refinement. ChatGPT can play along fairly well but sometimes needs to be kept on track with intelligent messaging. We rely on the honour system here, as users must decide whether they or ChatGPT won the game. Users can view the results and messages from their previous games on the history page. They can also view their personal stats such as their overall or role-specific win rate. 
+The idea of the application is to facilitate 'loose' games of 20 Questions against ChatGPT. Loose meaning they are not tightly controlled by the application logic. ChatGPT is automatically prompted to play a game of 20 questions with you, but the prompt itself is open to change and refinement. ChatGPT can play along fairly well but sometimes needs to be kept on track with intelligent messaging. We rely on the honour system here, as users must decide whether they or ChatGPT won the game. It is also up to the user to keep track of the number of questions that have been asked in the game, as we were not able to implement an automatic question counter ourselves. Users can view the results and messages from their previous games on the history page. They can also view their personal stats such as their overall or role-specific win rate. 
 
 # Documentation
 
